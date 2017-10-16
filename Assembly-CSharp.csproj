@@ -51,8 +51,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\AstroidModel1.cs" />
      <Compile Include="Assets\ClickableTile.cs" />
+     <Compile Include="Assets\Mon1.cs" />
+     <Compile Include="Assets\Monsters.cs" />
      <Compile Include="Assets\TileType.cs" />
      <Compile Include="Assets\TimeMap.cs" />
      <Compile Include="Assets\Unit.cs" />
