@@ -6,13 +6,18 @@ using UnityEngine;
 public class TimeMap : MonoBehaviour {
 
 	public GameObject selectedUnit;
-
 	public GameObject selectedMonster;
+	public GameObject selectedMon1;
+	GameObject newSpawn;
+
 	public TileType[] tileTypes;
+
+	List<GameObject> monsterList = new List<GameObject>();
+
 	int[,] tiles;
 
-	int mapSizeX = 10;
-	int mapSizeY = 10;
+	int mapSizeX = 8;
+	int mapSizeY = 8;
 	int counter = 0;
 
 	void Start() {
@@ -21,9 +26,9 @@ public class TimeMap : MonoBehaviour {
 		// Putting the position of units
 		selectedUnit.GetComponent<Unit>().tileX = 4;
 		selectedUnit.GetComponent<Unit>().tileY = 4;
-		selectedMonster.GetComponent<Monsters>().tileX = Random.Range(1,8);
-		selectedMonster.GetComponent<Monsters>().tileY = Random.Range(1,8);
-counter++;
+		selectedMonster.GetComponent<Monsters>().tileX = Random.Range(1,7);
+		selectedMonster.GetComponent<Monsters>().tileY = Random.Range(1,7);
+
 
 		Debug.Log(counter + " mon x " + 		selectedMonster.GetComponent<Monsters>().tileX + " y " +selectedMonster.GetComponent<Monsters>().tileY);
 
@@ -45,9 +50,9 @@ selectedMonster.transform.position = TileCoordToWorldCoord(selectedMonster.GetCo
 		// Put Walls in correct locations
 		for(int i=0; i < mapSizeX; i++) {
 			tiles[i, 0] = 1;
-			tiles[i, 9] = 1;
+			tiles[i, 7] = 1;
 			tiles[0, i] = 1;
-			tiles[9, i] = 1;
+			tiles[7, i] = 1;
 
 		}
 
@@ -59,6 +64,7 @@ selectedMonster.transform.position = TileCoordToWorldCoord(selectedMonster.GetCo
 				TileType tt = tileTypes[ tiles[x,y] ];
 
 				GameObject go = (GameObject)Instantiate(tt.tileVisualPrefab, new Vector3(x, y, 0), Quaternion.identity);
+
 
 				ClickableTile ct = go.GetComponent<ClickableTile>();
 				ct.tileX = x;
@@ -74,18 +80,69 @@ selectedMonster.transform.position = TileCoordToWorldCoord(selectedMonster.GetCo
 	}
 
 
+
+
+
+	public void DestroyMonster() {
+
+		try {
+			foreach(GameObject thisMonster in monsterList) {
+				if(thisMonster.GetComponent<Monsters>().tileX == selectedUnit.GetComponent<Unit>().tileX && thisMonster.GetComponent<Monsters>().tileY == selectedUnit.GetComponent<Unit>().tileY) {
+					print("POS of MONSTER: (x,y) (" + thisMonster.GetComponent<Monsters>().tileX + ", " + thisMonster.GetComponent<Monsters>().tileY + ")");
+					print(monsterList.Count);
+
+					Destroy(thisMonster);
+					monsterList.Remove(thisMonster);
+				}
+				print("co " + counter);
+			}
+
+		} catch {
+			Debug.Log("DestroyMonster Error");
+		}
+	}
+
+	public void SpawnMon() {
+
+
+
+
+
+
+		//Debug.Log("newMon " + objList.Count + "    " + selectedUnit.GetComponent<Unit>().tileX);
+		if(counter % 5 == 0) {
+			var randomX = Random.Range(1,7);
+			var randomY = Random.Range(1,7);
+
+			newSpawn = (GameObject)Instantiate(selectedMonster.GetComponent<Monsters>().Monster, new Vector3(randomX, randomY, -1), Quaternion.identity);
+			newSpawn.gameObject.tag = "Monster1";
+			newSpawn.GetComponent<Monsters>().tileX = randomX;
+			newSpawn.GetComponent<Monsters>().tileY = randomY;
+
+			monsterList.Add(newSpawn);
+
+
+
+			//Debug.Log(" counter % 5 == 0" );
+
+		}
+
+
+	}
+	//TODO ANOTHER WAY TO IMPLEMENT PICKUPS
+	void OnTriggerEnter2D(Collider2D other) {
+	        Destroy(other.gameObject);
+	    }
+
 	public void MoveSelectedUnitTo(int x, int y) {
-		// initial place values
 
 
+		SpawnMon();
+		DestroyMonster();
 
- // Debug.Log("mon x y " + selectedMonster.GetComponent<Monsters>().tileX + selectedMonster.GetComponent<Monsters>().tileY + " player" +
-  // selectedUnit.GetComponent<Unit>().tileX + selectedUnit.GetComponent<Unit>().tileY);
-
-
-/*
-		// if else for pick up measure
-		if((selectedUnit.GetComponent<Unit>().tileX - x == -1 || selectedUnit.GetComponent<Unit>().tileX - x == 1) && selectedUnit.GetComponent<Unit>().tileY - y == 0) {
+		// Player moving on board
+		// Moving Unit
+		if ((selectedUnit.GetComponent<Unit>().tileX - x == -1 || selectedUnit.GetComponent<Unit>().tileX - x == 1) && selectedUnit.GetComponent<Unit>().tileY - y == 0) {
 			// Debug.Log("true" + selectedUnit.GetComponent<Unit>().tileX + " " + x + " -1");
 			selectedUnit.GetComponent<Unit>().tileX = x;
 			selectedUnit.transform.position = TileCoordToWorldCoord(x, y);
@@ -95,22 +152,15 @@ selectedMonster.transform.position = TileCoordToWorldCoord(selectedMonster.GetCo
 			selectedUnit.GetComponent<Unit>().tileY = y;
 			selectedUnit.transform.position = TileCoordToWorldCoord(x, y);
 
-		} else {
-			// Debug.Log("ELSE");
 		}
-*/
-
-	// Player moving on board
-	selectedUnit.GetComponent<Unit>().tileX = x;
-	selectedUnit.GetComponent<Unit>().tileY = y;
-	selectedUnit.transform.position = TileCoordToWorldCoord(x, y);
-
 
 		// if else for Destroy Monsters
-    try {
-			//Debug.Log("!!mon x y " + selectedMonster.GetComponent<Monsters>().tileX + selectedMonster.GetComponent<Monsters>().tileY + " player" +
-		  // selectedUnit.GetComponent<Unit>().tileX + selectedUnit.GetComponent<Unit>().tileY);
+		try {
+
+
 			if (selectedMonster.GetComponent<Monsters>().tileX == selectedUnit.GetComponent<Unit>().tileX && selectedMonster.GetComponent<Monsters>().tileY == selectedUnit.GetComponent<Unit>().tileY) {
+
+				Destroy(newSpawn);
 
 				Destroy(selectedMonster);
 
@@ -120,14 +170,14 @@ selectedMonster.transform.position = TileCoordToWorldCoord(selectedMonster.GetCo
 
 				selectedMonster.GetComponent<Monsters>().carryable = true;
 
-				Debug.Log("next to Monsters" + counter);
+				Debug.Log("next to Monsters" + counter +  " " + selectedMonster.GetComponent<Monsters>().carryable);
 			} else if (selectedMonster.GetComponent<Monsters>().tileX - x == 0 && (selectedMonster.GetComponent<Monsters>().tileY - y == -1 || selectedMonster.GetComponent<Monsters>().tileY - y == 1)) {
 
 				Debug.Log("next to Monsters"+ counter);
 
 				selectedMonster.GetComponent<Monsters>().carryable = true;
 			}
-			counter++;
+
 		}
 
 
@@ -135,5 +185,18 @@ selectedMonster.transform.position = TileCoordToWorldCoord(selectedMonster.GetCo
 
 			Debug.Log("error"); // goes here if it's destroyed
 	}
+	//Debug.Log(counter + " counter");
+	counter++;
 	}
+	/*
+	void Update() {
+
+		Debug.Log(counter + " UPDATE");
+		selectedMonster.GetComponent<Monsters>().tileX = Random.Range(1,8);
+		selectedMonster.GetComponent<Monsters>().tileY = Random.Range(1,8);
+
+				GenerateMapData();
+				GenerateMapVisual();
+	}
+*/
 }
