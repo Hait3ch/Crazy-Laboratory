@@ -7,5 +7,5 @@ public class Unit : MonoBehaviour {
 	public int tileX;
 	public int tileY;
 
-	public bool carrying = false;
+	public bool carrying;
 }

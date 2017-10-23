@@ -14,11 +14,10 @@ public class Monsters : MonoBehaviour {
 	public TileType[] tileTypes;
 	int[,] tiles;
 
-	public bool carryable = false;
 
-	void OnMouseOver() {
-		if (Input.GetMouseButton(1) || Input.GetMouseButton(0)) {
-	 		Debug.Log("Click");
+	void OnMouseUp() {
+		if (Input.GetMouseButtonDown(1) || Input.GetMouseButton(0)) {
+	 		Debug.Log("Click something");
       // do something
    }
 
