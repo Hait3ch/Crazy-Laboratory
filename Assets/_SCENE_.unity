@@ -151,8 +151,9 @@ MonoBehaviour:
   selectedUnit: {fileID: 1815779229}
   selectedMonster: {fileID: 1437161829}
   selectedMon1: {fileID: 1543650893}
-  unit: {fileID: 0}
-  monsters: {fileID: 0}
+  newSpawn: {fileID: 0}
+  unit: {fileID: 1815779231}
+  monsters: {fileID: 1437161830}
   tileTypes:
   - name: Floor
     tileVisualPrefab: {fileID: 1568428822131568, guid: 9753499153151da4282565daeb7d4002,
@@ -162,6 +163,9 @@ MonoBehaviour:
     tileVisualPrefab: {fileID: 1777747473704494, guid: a4481c75f65eb1a49875302be9735666,
       type: 2}
     isWalkable: 0
+  clickableTile: {fileID: 114229994305627744, guid: 9753499153151da4282565daeb7d4002,
+    type: 2}
+  monsterList: []
   carryingMove: 0
 --- !u!1 &436177183
 GameObject:

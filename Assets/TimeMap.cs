@@ -5,16 +5,20 @@ using UnityEngine;
 
 public class TimeMap : MonoBehaviour {
 
+
 	public GameObject selectedUnit;
 	public GameObject selectedMonster;
 	public GameObject selectedMon1;
-	GameObject newSpawn;
+	public GameObject newSpawn;
 
 	public Unit unit;
 	public Monsters monsters;
 	public TileType[] tileTypes;
+	public ClickableTile clickableTile;
 
-	List<GameObject> monsterList = new List<GameObject>();
+	public List<GameObject> monsterList = new List<GameObject>();
+
+
 
 	int[,] tiles;
 	public bool carryingMove = false; // if true then cant move on monster
@@ -24,7 +28,6 @@ public class TimeMap : MonoBehaviour {
 	int counter = 0;
 
 	void Start() {
-
 
 		// Putting the position of units
 		selectedUnit.GetComponent<Unit>().carrying = false;
@@ -84,6 +87,7 @@ public class TimeMap : MonoBehaviour {
 		Destroy(mon);
 		monsterList.Remove(mon);
 		selectedUnit.GetComponent<Unit>().carrying = true;
+		//clickableTile.GetComponent<ClickableTile>().carrying = true;
 	}
 
 	public void SpawnMon() {
@@ -116,25 +120,28 @@ public class TimeMap : MonoBehaviour {
 
 		print("moving");
 		if(selectedUnit.GetComponent<Unit>().carrying == true) {
+			print("tru");
 			for(int i = 0; i < monsterList.Count; i++) {
-
+				print("for " + counter);
 				if(monsterList[i].GetComponent<Monsters>().tileX == x && monsterList[i].GetComponent<Monsters>().tileY == y) {
 					print("You Cant Move Here!");
 					return;
-				} else if((selectedUnit.GetComponent<Unit>().tileX - x == -1 || selectedUnit.GetComponent<Unit>().tileX - x == 1) && selectedUnit.GetComponent<Unit>().tileY - y == 0) {
-						print("You Cant Move Here!2");
-						SpawnMon();
-						selectedUnit.GetComponent<Unit>().tileX = x;
-						selectedUnit.transform.position = TileCoordToWorldCoord(x, y);
-						counter++;
-				} else if (selectedUnit.GetComponent<Unit>().tileX - x == 0 && (selectedUnit.GetComponent<Unit>().tileY - y == -1 || selectedUnit.GetComponent<Unit>().tileY - y == 1)) {
-						print("You Cant Move Here!3");
-						SpawnMon();
-						selectedUnit.GetComponent<Unit>().tileY = y;
-						selectedUnit.transform.position = TileCoordToWorldCoord(x, y);
-						counter++;
 				}
 			}
+			if((selectedUnit.GetComponent<Unit>().tileX - x == -1 || selectedUnit.GetComponent<Unit>().tileX - x == 1) && selectedUnit.GetComponent<Unit>().tileY - y == 0) {
+
+					SpawnMon();
+					selectedUnit.GetComponent<Unit>().tileX = x;
+					selectedUnit.transform.position = TileCoordToWorldCoord(x, y);
+					counter++;
+			} else if (selectedUnit.GetComponent<Unit>().tileX - x == 0 && (selectedUnit.GetComponent<Unit>().tileY - y == -1 || selectedUnit.GetComponent<Unit>().tileY - y == 1)) {
+
+					SpawnMon();
+					selectedUnit.GetComponent<Unit>().tileY = y;
+					selectedUnit.transform.position = TileCoordToWorldCoord(x, y);
+					counter++;
+			}
+
 		} else { // carrying false, moving left right, up down
 			if ((selectedUnit.GetComponent<Unit>().tileX - x == -1 || selectedUnit.GetComponent<Unit>().tileX - x == 1) && selectedUnit.GetComponent<Unit>().tileY - y == 0) {
 				SpawnMon();
