@@ -21,6 +21,11 @@ public class ClickableTile : MonoBehaviour {
 
 
 	}
+
+	void fuse() {
+		
+	}
+
 	void Update() {
 		print("Carrying: " + map.selectedUnit.GetComponent<Unit>().carrying);
 		if (Input.GetMouseButtonDown(1))
@@ -43,7 +48,9 @@ public class ClickableTile : MonoBehaviour {
 				map.newSpawn.GetComponent<Monsters>().tileY = tileY;
 				*/
 				map.monsterList.Add(map.newSpawn);
+			map.connect(map.newSpawn);
 
+			map.fuse (map.newSpawn);
 				print("right and carried and dropped");
 
 			}

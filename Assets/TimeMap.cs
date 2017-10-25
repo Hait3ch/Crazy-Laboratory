@@ -84,12 +84,13 @@ public class TimeMap : MonoBehaviour {
 
 
 	public void CarryMonster(GameObject mon) {
-		Destroy(mon);
+		mon.GetComponent<Monsters>().destroy ();
 		monsterList.Remove(mon);
 		selectedUnit.GetComponent<Unit>().carrying = true;
 		//clickableTile.GetComponent<ClickableTile>().carrying = true;
 	}
 
+	//TODO stop monsters from spawning on top of existing monsters
 	public void SpawnMon() {
 
 		if(counter % 5 == 0) {
@@ -106,9 +107,75 @@ public class TimeMap : MonoBehaviour {
 			newSpawn.GetComponent<Monsters>().tileY = randomY;
 
 			monsterList.Add(newSpawn);
+			connect(newSpawn);
 		}
 
 
+	}
+
+	//Connect a monster to its neighbouring monsters
+	public void connect(GameObject monster) {
+		Monsters mon = monster.GetComponent<Monsters> ();
+		if (mon.neighbours == null) {
+			mon.neighbours = new HashSet<GameObject> ();
+		}
+		foreach (GameObject g in monsterList) {
+			Monsters m = g.GetComponent<Monsters> ();
+			//TODO Check if same level
+			if ((m.tileX == (mon.tileX - 1)&&m.tileY == mon.tileY) || 
+				(m.tileX == (mon.tileX + 1)&&m.tileY == mon.tileY) ||
+				(m.tileY == (mon.tileY - 1)&&m.tileX == mon.tileX) || 
+				(m.tileY == (mon.tileY + 1))&&m.tileX == mon.tileX) {
+				m.neighbours.Add (monster);
+				int useless = mon.neighbours.Count;
+				mon.neighbours.Add (g);
+				print ("Linked" + mon.tileX + " " + mon.tileY + " to " + m.tileX + " " + m.tileY);
+			}
+		}
+	}
+	//For the argument GameObject, check if it is connected to at least 3 monsters.
+	//If that is the case, use BFS to explore the entire connected set of monsters and remove all of them
+	public void fuse(GameObject monster) {
+		Monsters mon = monster.GetComponent<Monsters> ();
+		HashSet<Monsters> set = new HashSet<Monsters> ();
+		set.Add (mon);
+		foreach (GameObject g in mon.neighbours) {
+			set.Add (g.GetComponent<Monsters>());
+		}
+		foreach (Monsters m in set) {
+			// If >= 3 connected
+			if (m.neighbours.Count > 1) {
+
+				//Do BFS to find all the connecting monsters, and mark them all as to be destroyed
+				Queue<Monsters> q = new Queue<Monsters> ();
+				q.Enqueue (mon);
+				while (q.Count > 0) {
+					Monsters cur = q.Dequeue ();
+					cur.markDestroy = true;
+					foreach (GameObject neighbour in cur.neighbours) {
+						Monsters neighbourMonster = neighbour.GetComponent<Monsters> ();
+						if (!neighbourMonster.markDestroy) {
+							q.Enqueue (neighbourMonster);
+							neighbourMonster.markDestroy = true;
+						}
+					}
+				}
+				//Find the to-be-removed monsters
+				List<GameObject> toremove = new List<GameObject> ();
+				foreach (GameObject g in monsterList) {
+					Monsters gmonster = g.GetComponent<Monsters> ();
+					if (gmonster.markDestroy) {
+						toremove.Add (g);
+						gmonster.destroy ();
+					}
+				}
+				//Remove them from the monsterlist
+				foreach (GameObject woad in toremove) {
+					monsterList.Remove (woad);
+				}
+
+			}
+		}
 	}
 	//TODO ANOTHER WAY TO IMPLEMENT PICKUPS
 	void OnTriggerEnter2D(Collider2D other) {
