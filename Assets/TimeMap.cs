@@ -11,6 +11,9 @@ public class TimeMap : MonoBehaviour {
 	public GameObject selectedMon1;
 	public GameObject newSpawn;
 
+	public bool[,] occupationArray = new bool[8, 8];
+	public int occupiedCount = 0;
+
 	public Unit unit;
 	public Monsters monsters;
 	public TileType[] tileTypes;
@@ -37,6 +40,12 @@ public class TimeMap : MonoBehaviour {
 		selectedMonster.GetComponent<Monsters>().tileY = Random.Range(1,7);
 		SpawnMon();
 		counter++;
+
+		for (int i = 0; i < mapSizeX; i++) {
+			for (int j = 0; j < mapSizeY; j++) {
+				occupationArray [i, j] = false;
+			}
+		}
 
 		Debug.Log(counter + " mon x " + 		selectedMonster.GetComponent<Monsters>().tileX + " y " +selectedMonster.GetComponent<Monsters>().tileY);
 
@@ -93,18 +102,34 @@ public class TimeMap : MonoBehaviour {
 	//TODO stop monsters from spawning on top of existing monsters
 	public void SpawnMon() {
 
-		if(counter % 5 == 0) {
+		if(counter % 3 == 0) {
 			var randomX = Random.Range(1,7);
 			var randomY = Random.Range(1,7);
+			print (occupationArray [randomX, randomY]);
+			print ("aaaaawtf");
 
+			while (occupiedCount < 36 && occupationArray [randomX, randomY] == true) {
+				print ("uh oh occupied");
+				print (randomX);
+				print (randomY);
+				randomX = Random.Range(1,7);
+				randomY = Random.Range(1,7);
+			}
+
+			/*
 			if(randomX == selectedUnit.GetComponent<Unit>().tileX && randomY == selectedUnit.GetComponent<Unit>().tileY) {
 				SpawnMon();
 			}
+			*/
 
 			newSpawn = (GameObject)Instantiate(selectedMonster.GetComponent<Monsters>().Monster, new Vector3(randomX, randomY, -1), Quaternion.identity);
 			newSpawn.gameObject.tag = "Monster1";
 			newSpawn.GetComponent<Monsters>().tileX = randomX;
 			newSpawn.GetComponent<Monsters>().tileY = randomY;
+
+			occupiedCount++;
+			occupationArray [randomX, randomY] = true;
+			print (occupiedCount);
 
 			monsterList.Add(newSpawn);
 			connect(newSpawn);
@@ -144,7 +169,8 @@ public class TimeMap : MonoBehaviour {
 		}
 		foreach (Monsters m in set) {
 			// If >= 3 connected
-			if (m.neighbours.Count > 1) {
+			if (m.neighbours.Count >= 1) {
+				List<GameObject> monsterObjectToRemove = new List<GameObject>{ };
 
 				//Do BFS to find all the connecting monsters, and mark them all as to be destroyed
 				Queue<Monsters> q = new Queue<Monsters> ();
@@ -152,27 +178,60 @@ public class TimeMap : MonoBehaviour {
 				while (q.Count > 0) {
 					Monsters cur = q.Dequeue ();
 					cur.markDestroy = true;
+					monsterObjectToRemove.Add (monster);
+
 					foreach (GameObject neighbour in cur.neighbours) {
+						print (neighbour);
 						Monsters neighbourMonster = neighbour.GetComponent<Monsters> ();
 						if (!neighbourMonster.markDestroy) {
 							q.Enqueue (neighbourMonster);
 							neighbourMonster.markDestroy = true;
+							//monsterObjectToRemove.Add (neighbour);
 						}
 					}
 				}
+
+				/*
+				print ("monsterObjectToRemove.Count+ " + monsterObjectToRemove.Count);
+				if (monsterObjectToRemove.Count >= 3) {
+					foreach (GameObject monsterObject in monsterObjectToRemove) {
+						Monsters gmonster = monsterObject.GetComponent<Monsters> ();
+						monsterList.Remove (monsterObject);
+						gmonster.destroy ();
+						occupiedCount--;
+						occupationArray [gmonster.tileX, gmonster.tileY] = false;
+					}
+				}
+
+*/
+
 				//Find the to-be-removed monsters
 				List<GameObject> toremove = new List<GameObject> ();
 				foreach (GameObject g in monsterList) {
 					Monsters gmonster = g.GetComponent<Monsters> ();
 					if (gmonster.markDestroy) {
 						toremove.Add (g);
-						gmonster.destroy ();
 					}
 				}
+
+				if (toremove.Count >= 3) {
+					foreach (GameObject g in toremove) {
+						Monsters gmonster = g.GetComponent<Monsters> ();
+						occupiedCount--;
+						occupationArray [gmonster.tileX, gmonster.tileY] = false;
+						gmonster.destroy ();
+						monsterList.Remove (g);
+					}
+
+				}
+
+				/*
 				//Remove them from the monsterlist
 				foreach (GameObject woad in toremove) {
 					monsterList.Remove (woad);
 				}
+				*/
+
 
 			}
 		}
@@ -225,6 +284,9 @@ public class TimeMap : MonoBehaviour {
 				print(monsterList);
 				for(int i = 0; i < monsterList.Count; i++) {
 					if(monsterList[i].GetComponent<Monsters>().tileX == selectedUnit.GetComponent<Unit>().tileX && monsterList[i].GetComponent<Monsters>().tileY == selectedUnit.GetComponent<Unit>().tileY) {
+						
+						occupiedCount--;
+						occupationArray [monsterList[i].GetComponent<Monsters>().tileX, monsterList[i].GetComponent<Monsters>().tileY] = false;
 						CarryMonster(monsterList[i]);
 						counter++;
 					}

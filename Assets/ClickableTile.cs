@@ -27,7 +27,7 @@ public class ClickableTile : MonoBehaviour {
 	}
 
 	void Update() {
-		print("Carrying: " + map.selectedUnit.GetComponent<Unit>().carrying);
+		//print("Carrying: " + map.selectedUnit.GetComponent<Unit>().carrying);
 		if (Input.GetMouseButtonDown(1))
 				Debug.Log("Pressed right click.");
 
@@ -48,6 +48,9 @@ public class ClickableTile : MonoBehaviour {
 				map.newSpawn.GetComponent<Monsters>().tileY = tileY;
 				*/
 				map.monsterList.Add(map.newSpawn);
+			map.occupiedCount++;
+			map.occupationArray [map.selectedUnit.GetComponent<Unit>().tileX, map.selectedUnit.GetComponent<Unit>().tileY] = true;
+
 			map.connect(map.newSpawn);
 
 			map.fuse (map.newSpawn);
