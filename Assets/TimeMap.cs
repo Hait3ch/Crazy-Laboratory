@@ -45,13 +45,13 @@ public class TimeMap : MonoBehaviour {
 			}
 		}
 
-		SpawnMon();
-		counter++;
-
 
 		Debug.Log(counter + " mon x " + 		selectedMonster.GetComponent<Monsters>().tileX + " y " +selectedMonster.GetComponent<Monsters>().tileY);
 
 		selectedMonster.transform.position = TileCoordToWorldCoord(selectedMonster.GetComponent<Monsters>().tileX, selectedMonster.GetComponent<Monsters>().tileY);
+
+		SpawnMon();
+		counter++;
 
 		GenerateMapData();
 		GenerateMapVisual();
@@ -95,8 +95,8 @@ public class TimeMap : MonoBehaviour {
 
 
 	public void CarryMonster(GameObject mon) {
-		mon.GetComponent<Monsters>().destroy ();
 		monsterList.Remove(mon);
+		mon.GetComponent<Monsters>().destroy ();
 		selectedUnit.GetComponent<Unit>().carrying = true;
 		//clickableTile.GetComponent<ClickableTile>().carrying = true;
 	}
@@ -104,12 +104,14 @@ public class TimeMap : MonoBehaviour {
 	//TODO stop monsters from spawning on top of existing monsters
 	public void SpawnMon() {
 
-		if(counter % 1 == 0) {
+		if(counter % 3 == 0) {
 			var randomX = Random.Range(1,7);
 			var randomY = Random.Range(1,7);
 			print (occupationArray [randomX, randomY]);
 			print ("aaaaawtf");
 
+			print (selectedUnit.GetComponent<Unit> ().tileX);
+			print (selectedUnit.GetComponent<Unit> ().tileY);
 			while ((occupiedCount < 36 && occupationArray [randomX, randomY] == true) || (randomX == selectedUnit.GetComponent<Unit>().tileX && randomY == selectedUnit.GetComponent<Unit>().tileY)) {
 				print ("uh oh occupied");
 				print ("blocking at " + randomX + randomY);
@@ -183,10 +185,11 @@ public class TimeMap : MonoBehaviour {
 					cur.markDestroy = true;
 					monsterObjectToRemove.Add (monster);
 
-					foreach (GameObject neighbour in cur.neighbours) {
-						print (neighbour);
+					foreach (GameObject neighbour in cur.neighbours) {	
 						Monsters neighbourMonster = neighbour.GetComponent<Monsters> ();
 						if (!neighbourMonster.markDestroy) {
+							print ("hey this is neighbors:" + neighbourMonster.tileX + neighbourMonster.tileY);
+							print ("neighbor count:" + cur.neighbours.Count);
 							q.Enqueue (neighbourMonster);
 							neighbourMonster.markDestroy = true;
 							//monsterObjectToRemove.Add (neighbour);
@@ -218,14 +221,20 @@ public class TimeMap : MonoBehaviour {
 				}
 
 				if (toremove.Count >= 3) {
+					print ("clear count" + toremove.Count);
 					foreach (GameObject g in toremove) {
 						Monsters gmonster = g.GetComponent<Monsters> ();
 						occupiedCount--;
 						occupationArray [gmonster.tileX, gmonster.tileY] = false;
-						gmonster.destroy ();
 						monsterList.Remove (g);
+						gmonster.destroy ();
 					}
 
+				} else {
+					foreach (GameObject g in toremove) {
+						Monsters gmonster = g.GetComponent<Monsters> ();
+						gmonster.markDestroy = false;
+					}
 				}
 
 				/*
@@ -240,9 +249,11 @@ public class TimeMap : MonoBehaviour {
 		}
 	}
 	//TODO ANOTHER WAY TO IMPLEMENT PICKUPS
+	/*
 	void OnTriggerEnter2D(Collider2D other) {
 	        Destroy(other.gameObject);
 	    }
+	    */
 
 
 	public void MoveSelectedUnitTo(int x, int y) {
@@ -259,30 +270,33 @@ public class TimeMap : MonoBehaviour {
 			}
 			if((selectedUnit.GetComponent<Unit>().tileX - x == -1 || selectedUnit.GetComponent<Unit>().tileX - x == 1) && selectedUnit.GetComponent<Unit>().tileY - y == 0) {
 
-					SpawnMon();
+					
 					selectedUnit.GetComponent<Unit>().tileX = x;
 					selectedUnit.transform.position = TileCoordToWorldCoord(x, y);
 					counter++;
+				SpawnMon();
 			} else if (selectedUnit.GetComponent<Unit>().tileX - x == 0 && (selectedUnit.GetComponent<Unit>().tileY - y == -1 || selectedUnit.GetComponent<Unit>().tileY - y == 1)) {
-
-					SpawnMon();
+				
 					selectedUnit.GetComponent<Unit>().tileY = y;
 					selectedUnit.transform.position = TileCoordToWorldCoord(x, y);
 					counter++;
+				SpawnMon();
 			}
 
 		} else { // carrying false, moving left right, up down
 			if ((selectedUnit.GetComponent<Unit>().tileX - x == -1 || selectedUnit.GetComponent<Unit>().tileX - x == 1) && selectedUnit.GetComponent<Unit>().tileY - y == 0) {
-				SpawnMon();
 				selectedUnit.GetComponent<Unit>().tileX = x;
 				selectedUnit.transform.position = TileCoordToWorldCoord(x, y);
 				counter++;
-		} else if (selectedUnit.GetComponent<Unit>().tileX - x == 0 && (selectedUnit.GetComponent<Unit>().tileY - y == -1 || selectedUnit.GetComponent<Unit>().tileY - y == 1)) {
 				SpawnMon();
+		} else if (selectedUnit.GetComponent<Unit>().tileX - x == 0 && (selectedUnit.GetComponent<Unit>().tileY - y == -1 || selectedUnit.GetComponent<Unit>().tileY - y == 1)) {
 				selectedUnit.GetComponent<Unit>().tileY = y;
 				selectedUnit.transform.position = TileCoordToWorldCoord(x, y);
 				counter++;
+				SpawnMon();
 			}
+
+			//pick up
 			if(monsterList.Count != 0) {
 				print(monsterList);
 				for(int i = 0; i < monsterList.Count; i++) {

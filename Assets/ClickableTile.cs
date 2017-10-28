@@ -29,7 +29,7 @@ public class ClickableTile : MonoBehaviour {
 	void Update() {
 		//print("Carrying: " + map.selectedUnit.GetComponent<Unit>().carrying);
 		if (Input.GetMouseButtonDown(1))
-				Debug.Log("Pressed right click.");
+				//Debug.Log("Pressed right click.");
 
     if (Input.GetMouseButtonDown(1) && map.selectedUnit.GetComponent<Unit>().carrying) {
 				map.selectedUnit.GetComponent<Unit>().carrying = false;
@@ -37,23 +37,23 @@ public class ClickableTile : MonoBehaviour {
 				//map.selectedMonster.GetComponent<Monsters>().tileY = tileY;
 
 				print("spawnpoint: " + map.selectedUnit.GetComponent<Unit>().tileX + " y: " + map.selectedUnit.GetComponent<Unit>().tileY);
-				map.newSpawn = (GameObject)Instantiate(map.selectedMonster.GetComponent<Monsters>().Monster, new Vector3(map.selectedUnit.GetComponent<Unit>().tileX, map.selectedUnit.GetComponent<Unit>().tileY, -1), Quaternion.identity);
-				map.newSpawn.gameObject.tag = "Monster1";
-				map.newSpawn.GetComponent<Monsters>().tileX = map.selectedUnit.GetComponent<Unit>().tileX;
-				map.newSpawn.GetComponent<Monsters>().tileY = map.selectedUnit.GetComponent<Unit>().tileY;
+			GameObject newSpawn	= (GameObject)Instantiate(map.selectedMonster.GetComponent<Monsters>().Monster, new Vector3(map.selectedUnit.GetComponent<Unit>().tileX, map.selectedUnit.GetComponent<Unit>().tileY, -1), Quaternion.identity);
+				newSpawn.gameObject.tag = "Monster1";
+				newSpawn.GetComponent<Monsters>().tileX = map.selectedUnit.GetComponent<Unit>().tileX;
+				newSpawn.GetComponent<Monsters>().tileY = map.selectedUnit.GetComponent<Unit>().tileY;
 				/*
 				map.newSpawn = (GameObject)Instantiate(map.selectedMonster.GetComponent<Monsters>().Monster, new Vector3(tileX, tileY, -1), Quaternion.identity);
 				map.newSpawn.gameObject.tag = "Monster1";
 				map.newSpawn.GetComponent<Monsters>().tileX = tileX;
 				map.newSpawn.GetComponent<Monsters>().tileY = tileY;
 				*/
-				map.monsterList.Add(map.newSpawn);
+				map.monsterList.Add(newSpawn);
 			map.occupiedCount++;
 			map.occupationArray [map.selectedUnit.GetComponent<Unit>().tileX, map.selectedUnit.GetComponent<Unit>().tileY] = true;
 
-			map.connect(map.newSpawn);
+			map.connect(newSpawn);
 
-			map.fuse (map.newSpawn);
+			map.fuse (newSpawn);
 				print("right and carried and dropped");
 
 			}
