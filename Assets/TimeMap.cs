@@ -38,14 +38,16 @@ public class TimeMap : MonoBehaviour {
 		selectedUnit.GetComponent<Unit>().tileY = 4;
 		selectedMonster.GetComponent<Monsters>().tileX = Random.Range(1,7);
 		selectedMonster.GetComponent<Monsters>().tileY = Random.Range(1,7);
-		SpawnMon();
-		counter++;
 
 		for (int i = 0; i < mapSizeX; i++) {
 			for (int j = 0; j < mapSizeY; j++) {
 				occupationArray [i, j] = false;
 			}
 		}
+
+		SpawnMon();
+		counter++;
+
 
 		Debug.Log(counter + " mon x " + 		selectedMonster.GetComponent<Monsters>().tileX + " y " +selectedMonster.GetComponent<Monsters>().tileY);
 
@@ -102,19 +104,20 @@ public class TimeMap : MonoBehaviour {
 	//TODO stop monsters from spawning on top of existing monsters
 	public void SpawnMon() {
 
-		if(counter % 3 == 0) {
+		if(counter % 1 == 0) {
 			var randomX = Random.Range(1,7);
 			var randomY = Random.Range(1,7);
 			print (occupationArray [randomX, randomY]);
 			print ("aaaaawtf");
 
-			while (occupiedCount < 36 && occupationArray [randomX, randomY] == true) {
+			while ((occupiedCount < 36 && occupationArray [randomX, randomY] == true) || (randomX == selectedUnit.GetComponent<Unit>().tileX && randomY == selectedUnit.GetComponent<Unit>().tileY)) {
 				print ("uh oh occupied");
-				print (randomX);
-				print (randomY);
+				print ("blocking at " + randomX + randomY);
 				randomX = Random.Range(1,7);
 				randomY = Random.Range(1,7);
 			}
+			print ("isOccupied " + occupationArray [randomX, randomY]);
+			print ("spawning at" + randomX + randomY);
 
 			/*
 			if(randomX == selectedUnit.GetComponent<Unit>().tileX && randomY == selectedUnit.GetComponent<Unit>().tileY) {
