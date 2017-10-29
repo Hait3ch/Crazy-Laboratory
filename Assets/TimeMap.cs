@@ -157,10 +157,11 @@ public class TimeMap : MonoBehaviour {
 		foreach (GameObject g in monsterList) {
 			Monsters m = g.GetComponent<Monsters> ();
 			//TODO Check if same level
-			if ((m.tileX == (mon.tileX - 1)&&m.tileY == mon.tileY) || 
+			if (m.level == mon.level &&
+				((m.tileX == (mon.tileX - 1)&&m.tileY == mon.tileY) || 
 				(m.tileX == (mon.tileX + 1)&&m.tileY == mon.tileY) ||
 				(m.tileY == (mon.tileY - 1)&&m.tileX == mon.tileX) || 
-				(m.tileY == (mon.tileY + 1))&&m.tileX == mon.tileX) {
+					(m.tileY == (mon.tileY + 1))&&m.tileX == mon.tileX)) {
 				if (m.neighbours == null) {
 					m.neighbours = new HashSet<GameObject> ();
 				}
@@ -237,6 +238,25 @@ public class TimeMap : MonoBehaviour {
 						monsterList.Remove (g);
 						gmonster.destroy ();
 					}
+
+
+					// dropping position to be CHANGED.
+					print("spawnpoint: " + selectedUnit.GetComponent<Unit>().tileX + " y: " + selectedUnit.GetComponent<Unit>().tileY);
+					GameObject newSpawn	= (GameObject)Instantiate(selectedMonster.GetComponent<Monsters>().Monster, new Vector3(selectedUnit.GetComponent<Unit>().tileX, selectedUnit.GetComponent<Unit>().tileY, -1), Quaternion.identity);
+					//newSpawn.gameObject.tag = "Monster1";
+					newSpawn.GetComponent<Monsters>().tileX = selectedUnit.GetComponent<Unit>().tileX;
+					newSpawn.GetComponent<Monsters>().tileY = selectedUnit.GetComponent<Unit>().tileY;
+
+					// fuse to a higher level monster
+					newSpawn.GetComponent<Monsters>().level = mon.level + 1;
+					newSpawn.GetComponent<Monsters> ().UpdateSprite ();
+					monsterList.Add(newSpawn);
+					occupiedCount++;
+					occupationArray [selectedUnit.GetComponent<Unit>().tileX, selectedUnit.GetComponent<Unit>().tileY] = true;
+
+					connect(newSpawn);
+
+					fuse (newSpawn);
 
 				} else {
 					foreach (GameObject g in toremove) {
