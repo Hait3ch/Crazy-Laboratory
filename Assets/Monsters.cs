@@ -8,6 +8,11 @@ public class Monsters : MonoBehaviour {
 	public Sprite sprite1;
 	public Sprite sprite2;
 	public Sprite sprite3;
+	public Sprite sprite4;
+	public Sprite sprite5;
+	public Sprite sprite6;
+	public Sprite sprite7;
+	public Sprite sprite8;
 
 	public int tileX;
 	public int tileY;
@@ -30,7 +35,7 @@ public class Monsters : MonoBehaviour {
 	public void UpdateSprite()
 	{
 		if (sprites == null) {
-			sprites = new Sprite[] {sprite1, sprite2, sprite3};
+			sprites = new Sprite[] {sprite1, sprite2, sprite3, sprite4, sprite5, sprite6, sprite7, sprite8};
 		}
 		// Load the sprites from a sprite sheet file (png). 
 		// Note: The file specified must exist in a folder named Resources
