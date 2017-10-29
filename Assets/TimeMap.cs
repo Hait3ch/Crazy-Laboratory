@@ -97,6 +97,8 @@ public class TimeMap : MonoBehaviour {
 	public void CarryMonster(GameObject mon) {
 		print ("taking away from " + mon.GetComponent<Monsters>().tileX + mon.GetComponent<Monsters>().tileY);
 		occupationArray [mon.GetComponent<Monsters>().tileX, mon.GetComponent<Monsters>().tileY] = false;
+		selectedUnit.GetComponent<Unit> ().carryingLevel = mon.GetComponent<Monsters> ().level;
+		print ("carrying level is " + selectedUnit.GetComponent<Unit> ().carryingLevel);
 		monsterList.Remove(mon);
 		mon.GetComponent<Monsters>().destroy ();
 		selectedUnit.GetComponent<Unit>().carrying = true;
@@ -132,7 +134,7 @@ public class TimeMap : MonoBehaviour {
 			newSpawn.gameObject.tag = "Monster1";
 			newSpawn.GetComponent<Monsters>().tileX = randomX;
 			newSpawn.GetComponent<Monsters>().tileY = randomY;
-			newSpawn.GetComponent<Monsters>().level = 2;
+			newSpawn.GetComponent<Monsters>().level = 1;
 			newSpawn.GetComponent<Monsters> ().UpdateSprite ();
 
 			occupiedCount++;

@@ -54,7 +54,7 @@ public class ClickableTile : MonoBehaviour {
 				newSpawn.gameObject.tag = "Monster1";
 				newSpawn.GetComponent<Monsters>().tileX = map.selectedUnit.GetComponent<Unit>().tileX;
 				newSpawn.GetComponent<Monsters>().tileY = map.selectedUnit.GetComponent<Unit>().tileY;
-				newSpawn.GetComponent<Monsters>().level = 2;
+			newSpawn.GetComponent<Monsters>().level = map.selectedUnit.GetComponent<Unit>().carryingLevel;
 				newSpawn.GetComponent<Monsters> ().UpdateSprite ();
 				/*
 				map.newSpawn = (GameObject)Instantiate(map.selectedMonster.GetComponent<Monsters>().Monster, new Vector3(tileX, tileY, -1), Quaternion.identity);

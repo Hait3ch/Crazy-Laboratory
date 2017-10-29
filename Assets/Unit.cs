@@ -8,4 +8,5 @@ public class Unit : MonoBehaviour {
 	public int tileY;
 
 	public bool carrying;
+	public int carryingLevel;
 }
