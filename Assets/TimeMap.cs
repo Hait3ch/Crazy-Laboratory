@@ -95,9 +95,12 @@ public class TimeMap : MonoBehaviour {
 
 
 	public void CarryMonster(GameObject mon) {
+		print ("taking away from " + mon.GetComponent<Monsters>().tileX + mon.GetComponent<Monsters>().tileY);
+		occupationArray [mon.GetComponent<Monsters>().tileX, mon.GetComponent<Monsters>().tileY] = false;
 		monsterList.Remove(mon);
 		mon.GetComponent<Monsters>().destroy ();
 		selectedUnit.GetComponent<Unit>().carrying = true;
+		occupiedCount--;
 		//clickableTile.GetComponent<ClickableTile>().carrying = true;
 	}
 
@@ -107,8 +110,6 @@ public class TimeMap : MonoBehaviour {
 		if(counter % 3 == 0) {
 			var randomX = Random.Range(1,7);
 			var randomY = Random.Range(1,7);
-			print (occupationArray [randomX, randomY]);
-			print ("aaaaawtf");
 
 			print (selectedUnit.GetComponent<Unit> ().tileX);
 			print (selectedUnit.GetComponent<Unit> ().tileY);
@@ -156,6 +157,9 @@ public class TimeMap : MonoBehaviour {
 				(m.tileX == (mon.tileX + 1)&&m.tileY == mon.tileY) ||
 				(m.tileY == (mon.tileY - 1)&&m.tileX == mon.tileX) || 
 				(m.tileY == (mon.tileY + 1))&&m.tileX == mon.tileX) {
+				if (m.neighbours == null) {
+					m.neighbours = new HashSet<GameObject> ();
+				}
 				m.neighbours.Add (monster);
 				int useless = mon.neighbours.Count;
 				mon.neighbours.Add (g);
