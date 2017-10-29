@@ -17,10 +17,6 @@ public class Monsters : MonoBehaviour {
 	public TileType[] tileTypes;
 	int[,] tiles;
 
-	void Start() {
-		neighbours = new HashSet<GameObject>();
-
-	}
 
 	void OnMouseUp() {
 		if (Input.GetMouseButtonDown(1) || Input.GetMouseButton(0)) {

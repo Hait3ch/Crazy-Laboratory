@@ -28,8 +28,21 @@ public class ClickableTile : MonoBehaviour {
 
 	void Update() {
 		//print("Carrying: " + map.selectedUnit.GetComponent<Unit>().carrying);
-		if (Input.GetMouseButtonDown(1))
+		if (Input.GetMouseButtonDown(1));
 				//Debug.Log("Pressed right click.");
+
+		/*
+		if (map.occupationArray [tileX, tileY] == true) {
+			//gameObject.GetComponent<Renderer>().material.color = new Color (0,1,0,1);
+			Renderer rend = GetComponent<Renderer> ();
+			//Set the initial color (0f,0f,0f,0f)
+			rend.material.color = Color.black;
+		} else {
+			Renderer rend = GetComponent<Renderer> ();
+			//Set the initial color (0f,0f,0f,0f)
+			rend.material.color = Color.cyan;
+		}
+		*/
 
     if (Input.GetMouseButtonDown(1) && map.selectedUnit.GetComponent<Unit>().carrying) {
 				map.selectedUnit.GetComponent<Unit>().carrying = false;
