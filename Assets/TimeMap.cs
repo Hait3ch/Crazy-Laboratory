@@ -132,6 +132,8 @@ public class TimeMap : MonoBehaviour {
 			newSpawn.gameObject.tag = "Monster1";
 			newSpawn.GetComponent<Monsters>().tileX = randomX;
 			newSpawn.GetComponent<Monsters>().tileY = randomY;
+			newSpawn.GetComponent<Monsters>().level = 2;
+			newSpawn.GetComponent<Monsters> ().UpdateSprite ();
 
 			occupiedCount++;
 			occupationArray [randomX, randomY] = true;

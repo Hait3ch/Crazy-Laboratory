@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class Monsters : MonoBehaviour {
 
+	private Sprite[] sprites;
+	public Sprite sprite1;
+	public Sprite sprite2;
+	public Sprite sprite3;
+
 	public int tileX;
 	public int tileY;
 	public int level;
@@ -17,6 +22,35 @@ public class Monsters : MonoBehaviour {
 	public TileType[] tileTypes;
 	int[,] tiles;
 
+	void Start() {
+		
+
+	}
+
+	public void UpdateSprite()
+	{
+		if (sprites == null) {
+			sprites = new Sprite[] {sprite1, sprite2, sprite3};
+		}
+		// Load the sprites from a sprite sheet file (png). 
+		// Note: The file specified must exist in a folder named Resources
+		if (level > 0) {
+			this.GetComponent<SpriteRenderer> ().sprite = sprites [level - 1];
+		}
+	}
+		
+	/*
+	private void LoadSpriteSheet()
+	{
+		// Load the sprites from a sprite sheet file (png). 
+		// Note: The file specified must exist in a folder named Resources
+		var sprites = Resources.LoadAll<Sprite>(this.SpriteSheetName);
+		this.spriteSheet = sprites.ToDictionary(x => x.name, x => x);
+
+		// Remember the name of the sprite sheet in case it is changed later
+		this.LoadedSpriteSheetName = this.SpriteSheetName;
+	}
+	*/
 
 	void OnMouseUp() {
 		if (Input.GetMouseButtonDown(1) || Input.GetMouseButton(0)) {
