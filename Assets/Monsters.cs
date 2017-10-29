@@ -36,6 +36,8 @@ public class Monsters : MonoBehaviour {
 		// Note: The file specified must exist in a folder named Resources
 		if (level > 0) {
 			this.GetComponent<SpriteRenderer> ().sprite = sprites [level - 1];
+			float myScale = 0.4f;
+			GetComponent<SpriteRenderer>().transform.localScale = new Vector3(myScale, myScale, myScale);
 		}
 	}
 		
