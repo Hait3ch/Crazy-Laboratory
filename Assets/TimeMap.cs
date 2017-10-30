@@ -13,6 +13,7 @@ public class TimeMap : MonoBehaviour {
 
 	public bool[,] occupationArray = new bool[8, 8];
 	public int occupiedCount = 0;
+	int highestLevel = 1;
 
 	public Unit unit;
 	public Monsters monsters;
@@ -30,7 +31,18 @@ public class TimeMap : MonoBehaviour {
 	int mapSizeY = 8;
 	int counter = 0;
 
-	void Start() {
+	//Monster spawning weights
+	static int maxMonsterLevelPossible = 8;
+	float[] weights = new float[maxMonsterLevelPossible];
+
+
+	void Start ()
+	{
+		weights [0] = 1;
+		for (int i = 1; i < maxMonsterLevelPossible; i++) {
+			weights [i] = weights [i - 1] * 2 / 3;
+			print (weights [i]);
+		}
 
 		// Putting the position of units
 		selectedUnit.GetComponent<Unit>().carrying = false;
@@ -134,7 +146,7 @@ public class TimeMap : MonoBehaviour {
 			newSpawn.gameObject.tag = "Monster1";
 			newSpawn.GetComponent<Monsters>().tileX = randomX;
 			newSpawn.GetComponent<Monsters>().tileY = randomY;
-			newSpawn.GetComponent<Monsters>().level = 1;
+			newSpawn.GetComponent<Monsters> ().level = newSpawnLevel (highestLevel);
 			newSpawn.GetComponent<Monsters> ().UpdateSprite ();
 
 			occupiedCount++;
@@ -146,6 +158,29 @@ public class TimeMap : MonoBehaviour {
 		}
 
 
+	}
+
+	//Randomly pick a level to spawn based on the highest level so far
+	int newSpawnLevel(int highestLevel)
+	{
+		print("Spawning a monster, highest lvl: " + highestLevel);
+		if(highestLevel == 1)
+			return 1;
+		float sum = 0;
+		for (int i = 0; i < (highestLevel - 1); i++) {
+			sum += weights[i];
+		}
+		float randomvalue = Random.Range(0, sum);
+		print("from 0 to " + sum + " chose " + randomvalue);
+		for (int i = 0; i < (highestLevel - 1); i++) {
+			if(randomvalue < weights[i]) {
+				return i + 1;
+			} else {
+				randomvalue -= weights[i];
+			}
+		}
+		print("should not have gotten here!");
+		return 1;
 	}
 
 	//Connect a monster to its neighbouring monsters
@@ -250,6 +285,7 @@ public class TimeMap : MonoBehaviour {
 					// fuse to a higher level monster
 					newSpawn.GetComponent<Monsters>().level = mon.level + 1;
 					newSpawn.GetComponent<Monsters> ().UpdateSprite ();
+					highestLevel = Mathf.Max(highestLevel, mon.level + 1);
 					monsterList.Add(newSpawn);
 					occupiedCount++;
 					occupationArray [selectedUnit.GetComponent<Unit>().tileX, selectedUnit.GetComponent<Unit>().tileY] = true;
