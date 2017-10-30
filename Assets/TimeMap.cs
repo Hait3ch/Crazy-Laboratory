@@ -13,6 +13,7 @@ public class TimeMap : MonoBehaviour {
 
 	public bool[,] occupationArray = new bool[8, 8];
 	public int occupiedCount = 0;
+	int highestLevel = 1;
 
 	public Unit unit;
 	public Monsters monsters;
@@ -29,8 +30,27 @@ public class TimeMap : MonoBehaviour {
 	int mapSizeX = 8;
 	int mapSizeY = 8;
 	int counter = 0;
+	float sinceLastSpawn = 0;
 
-	void Start() {
+	//Dynamic difficulty
+	static int max = 3;
+	static int min = 1;
+	static float F = 1.01f;
+	
+	//Monster spawning weights
+	static int maxMonsterLevelPossible = 8;
+	float[] weights = new float[maxMonsterLevelPossible];
+	static float multiplier = 2/3f;
+	
+	int timesCombined = 0;
+
+	void Start ()
+	{
+		weights [0] = 1;
+		for (int i = 1; i < maxMonsterLevelPossible; i++) {
+			weights [i] = weights [i - 1] * multiplier;
+			print (weights [i]);
+		}
 
 		// Putting the position of units
 		selectedUnit.GetComponent<Unit>().carrying = false;
@@ -51,7 +71,7 @@ public class TimeMap : MonoBehaviour {
 		selectedMonster.transform.position = TileCoordToWorldCoord(selectedMonster.GetComponent<Monsters>().tileX, selectedMonster.GetComponent<Monsters>().tileY);
 
 		SpawnMon();
-		counter++;
+		counterIncrease();
 
 		GenerateMapData();
 		GenerateMapVisual();
@@ -92,6 +112,11 @@ public class TimeMap : MonoBehaviour {
 	public Vector3 TileCoordToWorldCoord(int x, int y) {
 		return new Vector3(x, y ,0);
 	}
+	
+	public void counterIncrease() {
+		counter++;
+		sinceLastSpawn++;
+	}
 
 
 	public void CarryMonster(GameObject mon) {
@@ -108,8 +133,9 @@ public class TimeMap : MonoBehaviour {
 
 	//TODO stop monsters from spawning on top of existing monsters
 	public void SpawnMon() {
-
-		if(counter % 3 == 0) {
+		float delay = spawnDelay(timesCombined);
+		if(sinceLastSpawn > delay) {
+			sinceLastSpawn -= delay;
 			var randomX = Random.Range(1,7);
 			var randomY = Random.Range(1,7);
 
@@ -134,7 +160,7 @@ public class TimeMap : MonoBehaviour {
 			newSpawn.gameObject.tag = "Monster1";
 			newSpawn.GetComponent<Monsters>().tileX = randomX;
 			newSpawn.GetComponent<Monsters>().tileY = randomY;
-			newSpawn.GetComponent<Monsters>().level = 1;
+			newSpawn.GetComponent<Monsters> ().level = newSpawnLevel (highestLevel);
 			newSpawn.GetComponent<Monsters> ().UpdateSprite ();
 
 			occupiedCount++;
@@ -146,6 +172,33 @@ public class TimeMap : MonoBehaviour {
 		}
 
 
+	}
+	
+	float spawnDelay(int timesCombined) {
+		return ((max-min)/(Mathf.Pow(F, Mathf.Max(timesCombined, 1))))+min;	
+	}
+
+	//Randomly pick a level to spawn based on the highest level so far
+	int newSpawnLevel(int highestLevel)
+	{
+		print("Spawning a monster, highest lvl: " + highestLevel);
+		if(highestLevel == 1)
+			return 1;
+		float sum = 0;
+		for (int i = 0; i < (highestLevel - 1); i++) {
+			sum += weights[i];
+		}
+		float randomvalue = Random.Range(0, sum);
+		print("from 0 to " + sum + " chose " + randomvalue);
+		for (int i = 0; i < (highestLevel - 1); i++) {
+			if(randomvalue < weights[i]) {
+				return i + 1;
+			} else {
+				randomvalue -= weights[i];
+			}
+		}
+		print("should not have gotten here!");
+		return 1;
 	}
 
 	//Connect a monster to its neighbouring monsters
@@ -250,6 +303,8 @@ public class TimeMap : MonoBehaviour {
 					// fuse to a higher level monster
 					newSpawn.GetComponent<Monsters>().level = mon.level + 1;
 					newSpawn.GetComponent<Monsters> ().UpdateSprite ();
+					highestLevel = Mathf.Max(highestLevel, mon.level + 1);
+					timesCombined++;
 					monsterList.Add(newSpawn);
 					occupiedCount++;
 					occupationArray [selectedUnit.GetComponent<Unit>().tileX, selectedUnit.GetComponent<Unit>().tileY] = true;
@@ -301,13 +356,13 @@ public class TimeMap : MonoBehaviour {
 					
 					selectedUnit.GetComponent<Unit>().tileX = x;
 					selectedUnit.transform.position = TileCoordToWorldCoord(x, y);
-					counter++;
+					counterIncrease();
 				SpawnMon();
 			} else if (selectedUnit.GetComponent<Unit>().tileX - x == 0 && (selectedUnit.GetComponent<Unit>().tileY - y == -1 || selectedUnit.GetComponent<Unit>().tileY - y == 1)) {
 				
 					selectedUnit.GetComponent<Unit>().tileY = y;
 					selectedUnit.transform.position = TileCoordToWorldCoord(x, y);
-					counter++;
+					counterIncrease();
 				SpawnMon();
 			}
 
@@ -315,12 +370,12 @@ public class TimeMap : MonoBehaviour {
 			if ((selectedUnit.GetComponent<Unit>().tileX - x == -1 || selectedUnit.GetComponent<Unit>().tileX - x == 1) && selectedUnit.GetComponent<Unit>().tileY - y == 0) {
 				selectedUnit.GetComponent<Unit>().tileX = x;
 				selectedUnit.transform.position = TileCoordToWorldCoord(x, y);
-				counter++;
+				counterIncrease();
 				SpawnMon();
 		} else if (selectedUnit.GetComponent<Unit>().tileX - x == 0 && (selectedUnit.GetComponent<Unit>().tileY - y == -1 || selectedUnit.GetComponent<Unit>().tileY - y == 1)) {
 				selectedUnit.GetComponent<Unit>().tileY = y;
 				selectedUnit.transform.position = TileCoordToWorldCoord(x, y);
-				counter++;
+				counterIncrease();
 				SpawnMon();
 			}
 
@@ -333,7 +388,7 @@ public class TimeMap : MonoBehaviour {
 						occupiedCount--;
 						occupationArray [monsterList[i].GetComponent<Monsters>().tileX, monsterList[i].GetComponent<Monsters>().tileY] = false;
 						CarryMonster(monsterList[i]);
-						counter++;
+						counterIncrease();
 					}
 				}
 
