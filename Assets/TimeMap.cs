@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 
 public class TimeMap : MonoBehaviour {
@@ -148,14 +149,19 @@ public class TimeMap : MonoBehaviour {
 
 			print (selectedUnit.GetComponent<Unit> ().tileX);
 			print (selectedUnit.GetComponent<Unit> ().tileY);
-			while ((occupiedCount < 36 && occupationArray [randomX, randomY] == true) || (randomX == selectedUnit.GetComponent<Unit>().tileX && randomY == selectedUnit.GetComponent<Unit>().tileY)) {
+
+			var isFull = false;
+
+			while ((!(monsterList.Count == 36 && unit.carrying) && occupationArray [randomX, randomY] == true) || (randomX == selectedUnit.GetComponent<Unit>().tileX && randomY == selectedUnit.GetComponent<Unit>().tileY)) {
 				print ("uh oh occupied");
 				print ("blocking at " + randomX + randomY);
 				randomX = Random.Range(1,7);
 				randomY = Random.Range(1,7);
 			}
-			print ("isOccupied " + occupationArray [randomX, randomY]);
-			print ("spawning at" + randomX + randomY);
+
+				
+			//print ("isOccupied " + occupationArray [randomX, randomY]);
+			//print ("spawning at" + randomX + randomY);
 
 			/*
 			if(randomX == selectedUnit.GetComponent<Unit>().tileX && randomY == selectedUnit.GetComponent<Unit>().tileY) {
@@ -176,6 +182,12 @@ public class TimeMap : MonoBehaviour {
 
 			monsterList.Add(newSpawn);
 			connect(newSpawn);
+
+			if (monsterList.Count == 35) {
+				isFull = true;
+				print ("you lose");
+				SceneManager.LoadScene (2);
+			}
 		}
 
 
