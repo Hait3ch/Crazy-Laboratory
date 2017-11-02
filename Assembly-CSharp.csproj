@@ -55,6 +55,7 @@
      <Compile Include="Assets\Mon1.cs" />
      <Compile Include="Assets\Monsters.cs" />
      <Compile Include="Assets\Scripts\Helper.cs" />
+     <Compile Include="Assets\StartScene.cs" />
      <Compile Include="Assets\TileType.cs" />
      <Compile Include="Assets\TimeMap.cs" />
      <Compile Include="Assets\Unit.cs" />

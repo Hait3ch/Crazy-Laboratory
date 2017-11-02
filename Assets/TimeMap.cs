@@ -28,8 +28,8 @@ public class TimeMap : MonoBehaviour {
 	int[,] tiles;
 	public bool carryingMove = false; // if true then cant move on monster
 	//public bool carrying = false;
-	int mapSizeX = 8;
-	int mapSizeY = 8;
+	int mapSizeX = 6;
+	int mapSizeY = 6;
 	int counter = 0;
 	float sinceLastSpawn = 0;
 
@@ -57,8 +57,8 @@ public class TimeMap : MonoBehaviour {
 		selectedUnit.GetComponent<Unit>().carrying = false;
 		selectedUnit.GetComponent<Unit>().tileX = 4;
 		selectedUnit.GetComponent<Unit>().tileY = 4;
-		selectedMonster.GetComponent<Monsters>().tileX = Random.Range(1,7);
-		selectedMonster.GetComponent<Monsters>().tileY = Random.Range(1,7);
+		selectedMonster.GetComponent<Monsters>().tileX = Random.Range(0,6);
+		selectedMonster.GetComponent<Monsters>().tileY = Random.Range(0,6);
 
 		for (int i = 0; i < mapSizeX; i++) {
 			for (int j = 0; j < mapSizeY; j++) {
@@ -87,13 +87,7 @@ public class TimeMap : MonoBehaviour {
 				tiles[x,y] = 0;
 			}
 		}
-		// Put Walls in correct locations
-		for(int i=0; i < mapSizeX; i++) {
-			tiles[i, 0] = 1;
-			tiles[i, 7] = 1;
-			tiles[0, i] = 1;
-			tiles[7, i] = 1;
-		}
+
 	}
 
 	void GenerateMapVisual() {
@@ -144,8 +138,8 @@ public class TimeMap : MonoBehaviour {
 		float delay = spawnDelay(timesCombined);
 		if(sinceLastSpawn > delay) {
 			sinceLastSpawn -= delay;
-			var randomX = Random.Range(1,7);
-			var randomY = Random.Range(1,7);
+			var randomX = Random.Range(0,6);
+			var randomY = Random.Range(0,6);
 
 			print (selectedUnit.GetComponent<Unit> ().tileX);
 			print (selectedUnit.GetComponent<Unit> ().tileY);
@@ -155,8 +149,8 @@ public class TimeMap : MonoBehaviour {
 			while ((!(monsterList.Count == 36 && unit.carrying) && occupationArray [randomX, randomY] == true) || (randomX == selectedUnit.GetComponent<Unit>().tileX && randomY == selectedUnit.GetComponent<Unit>().tileY)) {
 				print ("uh oh occupied");
 				print ("blocking at " + randomX + randomY);
-				randomX = Random.Range(1,7);
-				randomY = Random.Range(1,7);
+				randomX = Random.Range(0,6);
+				randomY = Random.Range(0,6);
 			}
 
 				
@@ -350,14 +344,8 @@ public class TimeMap : MonoBehaviour {
 			}
 		}
 	}
-	//TODO ANOTHER WAY TO IMPLEMENT PICKUPS
-	/*
-	void OnTriggerEnter2D(Collider2D other) {
-	        Destroy(other.gameObject);
-	    }
-	    */
 
-
+    //TODO movement has to be cahnged to arrow keys
 	public void MoveSelectedUnitTo(int x, int y) {
 
 		print("moving");
@@ -410,10 +398,7 @@ public class TimeMap : MonoBehaviour {
 						counterIncrease();
 					}
 				}
-
-
 			}
-
 		}
 	}
 }
