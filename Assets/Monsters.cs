@@ -59,29 +59,21 @@ public class Monsters : MonoBehaviour {
 	}
 	*/
 
-	void OnMouseUp() {
-		if (Input.GetMouseButtonDown(1) || Input.GetMouseButton(0)) {
-	 		Debug.Log("Click something");
-      // do something
-   }
-
-	}
 
 	//destroy this monster, and remove references to it on its neighbours
 	public void destroy() {
-		print ("destroyed:" + tileX + tileY);
+		print ("destroyed: x: " + tileX + ", y: " + tileY);
 		foreach (GameObject monster in neighbours) {
 			print ("going to detach " + tileX + tileY + " and " + monster.GetComponent<Monsters> ().tileX + monster.GetComponent<Monsters> ().tileY);
 			monster.GetComponent<Monsters>().detach (gameObject);
 		}
 
 		Destroy (gameObject);
-		print ("destroyed!!!:" + tileX + tileY);
 
 	}
 
 	public void detach(GameObject mon) {
-		print ("Is neighbor removed?" + neighbours.Remove (mon));
+		print ("Is neighbor removed? " + neighbours.Remove (mon));
 	}
 		
 		

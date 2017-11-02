@@ -31,7 +31,8 @@ public class TimeMap : MonoBehaviour {
 	int mapSizeX = 6;
 	int mapSizeY = 6;
 	int counter = 0;
-	float sinceLastSpawn = 0;
+	int initialSpawn = 0;
+	float sinceLastSpawn = 4;
 
 	//Dynamic difficulty
 	static int max = 3;
@@ -67,10 +68,9 @@ public class TimeMap : MonoBehaviour {
 		}
 
 
-		Debug.Log(counter + " mon x " + 		selectedMonster.GetComponent<Monsters>().tileX + " y " +selectedMonster.GetComponent<Monsters>().tileY);
-
 		selectedMonster.transform.position = TileCoordToWorldCoord(selectedMonster.GetComponent<Monsters>().tileX, selectedMonster.GetComponent<Monsters>().tileY);
 
+		SpawnMon();
 		SpawnMon();
 		counterIncrease();
 
@@ -94,13 +94,10 @@ public class TimeMap : MonoBehaviour {
 		for(int x=0; x < mapSizeX; x++) {
 			for(int	 y=0; y < mapSizeY; y++) {
 				TileType tt = tileTypes[ tiles[x,y] ];
-				print (tt.name);
 				GameObject go = (GameObject)Instantiate(tt.tileVisualPrefab, new Vector3(x, y, 0), Quaternion.identity);
 				if (tt.name == "Floor") {
 					if ((x + y) % 2 == 1) {
 						go.GetComponent<Renderer> ().material.color = new Color (130/255.0f, 128/255.0f, 156/255.0f, 1);
-					} else {
-
 					}
 				}
 				ClickableTile ct = go.GetComponent<ClickableTile>();
@@ -130,19 +127,17 @@ public class TimeMap : MonoBehaviour {
 		mon.GetComponent<Monsters>().destroy ();
 		selectedUnit.GetComponent<Unit>().carrying = true;
 		occupiedCount--;
-		//clickableTile.GetComponent<ClickableTile>().carrying = true;
 	}
 
-	//TODO stop monsters from spawning on top of existing monsters
+    // Spawning monsters
 	public void SpawnMon() {
 		float delay = spawnDelay(timesCombined);
-		if(sinceLastSpawn > delay) {
+		if(sinceLastSpawn > delay || initialSpawn < 2) {
+		    initialSpawn++;
 			sinceLastSpawn -= delay;
 			var randomX = Random.Range(0,6);
 			var randomY = Random.Range(0,6);
 
-			print (selectedUnit.GetComponent<Unit> ().tileX);
-			print (selectedUnit.GetComponent<Unit> ().tileY);
 
 			var isFull = false;
 
@@ -153,15 +148,6 @@ public class TimeMap : MonoBehaviour {
 				randomY = Random.Range(0,6);
 			}
 
-				
-			//print ("isOccupied " + occupationArray [randomX, randomY]);
-			//print ("spawning at" + randomX + randomY);
-
-			/*
-			if(randomX == selectedUnit.GetComponent<Unit>().tileX && randomY == selectedUnit.GetComponent<Unit>().tileY) {
-				SpawnMon();
-			}
-			*/
 
 			newSpawn = (GameObject)Instantiate(selectedMonster.GetComponent<Monsters>().Monster, new Vector3(randomX, randomY, -1), Quaternion.identity);
 			newSpawn.gameObject.tag = "Monster1";
@@ -172,11 +158,11 @@ public class TimeMap : MonoBehaviour {
 
 			occupiedCount++;
 			occupationArray [randomX, randomY] = true;
-			print (occupiedCount);
+			print ("occupiedCount " + occupiedCount);
 
 			monsterList.Add(newSpawn);
 			connect(newSpawn);
-
+            print("Monsterlist count: " + monsterList.Count);
 			if (monsterList.Count == 35) {
 				isFull = true;
 				print ("you lose");
@@ -345,30 +331,26 @@ public class TimeMap : MonoBehaviour {
 		}
 	}
 
-    //TODO movement has to be changed to arrow keys
+
 	public void MoveSelectedUnitTo(int x, int y) {
 
 		if(selectedUnit.GetComponent<Unit>().carrying == true) {
-			print("tru");
 			for(int i = 0; i < monsterList.Count; i++) {
-				print("for " + counter);
 				if(monsterList[i].GetComponent<Monsters>().tileX == x && monsterList[i].GetComponent<Monsters>().tileY == y) {
 					print("You Cant Move Here!");
 					return;
 				}
 			}
 			if((selectedUnit.GetComponent<Unit>().tileX - x == -1 || selectedUnit.GetComponent<Unit>().tileX - x == 1) && selectedUnit.GetComponent<Unit>().tileY - y == 0) {
-
-					
-					selectedUnit.GetComponent<Unit>().tileX = x;
-					selectedUnit.transform.position = TileCoordToWorldCoord(x, y);
-					counterIncrease();
+                selectedUnit.GetComponent<Unit>().tileX = x;
+                selectedUnit.transform.position = TileCoordToWorldCoord(x, y);
+                counterIncrease();
 				SpawnMon();
+
 			} else if (selectedUnit.GetComponent<Unit>().tileX - x == 0 && (selectedUnit.GetComponent<Unit>().tileY - y == -1 || selectedUnit.GetComponent<Unit>().tileY - y == 1)) {
-				
-					selectedUnit.GetComponent<Unit>().tileY = y;
-					selectedUnit.transform.position = TileCoordToWorldCoord(x, y);
-					counterIncrease();
+                selectedUnit.GetComponent<Unit>().tileY = y;
+                selectedUnit.transform.position = TileCoordToWorldCoord(x, y);
+                counterIncrease();
 				SpawnMon();
 			}
 
