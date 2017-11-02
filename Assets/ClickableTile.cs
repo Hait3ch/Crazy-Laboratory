@@ -11,19 +11,7 @@ public class ClickableTile : MonoBehaviour {
 
 
 	void OnMouseUp() {
-		//Debug.Log("Click");
-		//print("carr"  + carrying + " "+ selectedUnit.GetComponent<Unit>().carrying);
-
-
-		print("player: " + tileX + " y: " + tileY);
-
 		map.MoveSelectedUnitTo(tileX, tileY); // can move anywhere
-
-
-	}
-
-	void fuse() {
-		
 	}
 
 	void Update() {
@@ -44,7 +32,7 @@ public class ClickableTile : MonoBehaviour {
 		}
 		*/
 
-    if (Input.GetMouseButtonDown(1) && map.selectedUnit.GetComponent<Unit>().carrying) {
+    if ((Input.GetKeyDown("space") || Input.GetMouseButtonDown(1)) && map.selectedUnit.GetComponent<Unit>().carrying) {
 				map.selectedUnit.GetComponent<Unit>().carrying = false;
 				//map.selectedMonster.GetComponent<Monsters>().tileX = tileX;
 				//map.selectedMonster.GetComponent<Monsters>().tileY = tileY;
