@@ -1044,6 +1044,8 @@ MonoBehaviour:
   tileY: 0
   carrying: 0
   carryingLevel: 0
+  unit: {fileID: 0}
+  map: {fileID: 0}
 --- !u!50 &1815779232
 Rigidbody2D:
   serializedVersion: 4

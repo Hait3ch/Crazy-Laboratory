@@ -345,10 +345,9 @@ public class TimeMap : MonoBehaviour {
 		}
 	}
 
-    //TODO movement has to be cahnged to arrow keys
+    //TODO movement has to be changed to arrow keys
 	public void MoveSelectedUnitTo(int x, int y) {
 
-		print("moving");
 		if(selectedUnit.GetComponent<Unit>().carrying == true) {
 			print("tru");
 			for(int i = 0; i < monsterList.Count; i++) {
