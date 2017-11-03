@@ -34,6 +34,9 @@ public class ClickableTile : MonoBehaviour {
             map.connect(newSpawn);
 
             map.fuse (newSpawn);
+
+            // Check if game ends after dropping monster
+            map.isGameEnd();
             print("right and carried and dropped");
 
         }

@@ -62,9 +62,9 @@ public class Monsters : MonoBehaviour {
 
 	//destroy this monster, and remove references to it on its neighbours
 	public void destroy() {
-		print ("destroyed: x: " + tileX + ", y: " + tileY);
+		//print ("destroyed: x: " + tileX + ", y: " + tileY);
 		foreach (GameObject monster in neighbours) {
-			print ("going to detach " + tileX + tileY + " and " + monster.GetComponent<Monsters> ().tileX + monster.GetComponent<Monsters> ().tileY);
+			//print ("going to detach " + tileX + tileY + " and " + monster.GetComponent<Monsters> ().tileX + monster.GetComponent<Monsters> ().tileY);
 			monster.GetComponent<Monsters>().detach (gameObject);
 		}
 

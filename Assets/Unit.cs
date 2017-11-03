@@ -31,8 +31,10 @@ public class Unit : MonoBehaviour {
         }
 
         //TODO NOWORKING PickUp fused monster
+        /*
         if (Input.GetKeyDown("space") && !map.selectedUnit.GetComponent<Unit>().carrying) {
             map.MoveSelectedUnitTo(Convert.ToInt32(transform.position.x), Convert.ToInt32(transform.position.y));
         }
+        */
     }
 }

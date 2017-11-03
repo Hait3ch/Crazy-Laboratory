@@ -226,8 +226,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a2087c60ac88a6419f7eeab83be835b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tileX: 0
-  tileY: 0
 --- !u!212 &350418344
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -428,8 +426,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a2087c60ac88a6419f7eeab83be835b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tileX: 0
-  tileY: 0
 --- !u!212 &949940052
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -753,8 +749,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a2087c60ac88a6419f7eeab83be835b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tileX: 0
-  tileY: 0
 --- !u!50 &1543650897
 Rigidbody2D:
   serializedVersion: 4
@@ -969,7 +963,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 3.6
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -992,7 +986,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1686450418}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.5, y: 3.5, z: -10}
+  m_LocalPosition: {x: 3.5, y: 2.5, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}

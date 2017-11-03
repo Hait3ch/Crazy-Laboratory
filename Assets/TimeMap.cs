@@ -27,12 +27,12 @@ public class TimeMap : MonoBehaviour {
 
 	int[,] tiles;
 	public bool carryingMove = false; // if true then cant move on monster
-	//public bool carrying = false;
 	int mapSizeX = 6;
 	int mapSizeY = 6;
 	int counter = 0;
 	int initialSpawn = 0;
 	float sinceLastSpawn = 4;
+    int safeStop = 0;
 
 	//Dynamic difficulty
 	static int max = 3;
@@ -51,7 +51,7 @@ public class TimeMap : MonoBehaviour {
 		weights [0] = 1;
 		for (int i = 1; i < maxMonsterLevelPossible; i++) {
 			weights [i] = weights [i - 1] * multiplier;
-			print (weights [i]);
+			//print (weights [i]);
 		}
 
 		// Putting the position of units
@@ -139,15 +139,22 @@ public class TimeMap : MonoBehaviour {
 			var randomY = Random.Range(0,6);
 
 
-			var isFull = false;
+            //TODO does the game bug here or in other while?
 
-			while ((!(monsterList.Count == 36 && unit.carrying) && occupationArray [randomX, randomY] == true) || (randomX == selectedUnit.GetComponent<Unit>().tileX && randomY == selectedUnit.GetComponent<Unit>().tileY)) {
-				print ("uh oh occupied");
-				print ("blocking at " + randomX + randomY);
+            isGameEnd();
+            // re-roll for reasons:
+            // 1. can't be on top of player
+            // 2. x and y is occupied
+            while((randomX == selectedUnit.GetComponent<Unit>().tileX && randomY == selectedUnit.GetComponent<Unit>().tileY) ||
+                occupationArray[randomX, randomY] == true
+                ) {
+                print ("uh oh occupied");
 				randomX = Random.Range(0,6);
 				randomY = Random.Range(0,6);
-			}
-
+            }
+            print ("occ " + occupationArray[randomX, randomY]);
+            occupiedCount++;
+   			occupationArray [randomX, randomY] = true;
 
 			newSpawn = (GameObject)Instantiate(selectedMonster.GetComponent<Monsters>().Monster, new Vector3(randomX, randomY, -1), Quaternion.identity);
 			newSpawn.gameObject.tag = "Monster1";
@@ -156,18 +163,13 @@ public class TimeMap : MonoBehaviour {
 			newSpawn.GetComponent<Monsters> ().level = newSpawnLevel (highestLevel);
 			newSpawn.GetComponent<Monsters> ().UpdateSprite ();
 
-			occupiedCount++;
-			occupationArray [randomX, randomY] = true;
-			print ("occupiedCount " + occupiedCount);
+
+			//print ("occupiedCount " + occupiedCount);
 
 			monsterList.Add(newSpawn);
 			connect(newSpawn);
+			isGameEnd();
             print("Monsterlist count: " + monsterList.Count);
-			if (monsterList.Count == 35) {
-				isFull = true;
-				print ("you lose");
-				SceneManager.LoadScene (2);
-			}
 		}
 
 
@@ -180,7 +182,7 @@ public class TimeMap : MonoBehaviour {
 	//Randomly pick a level to spawn based on the highest level so far
 	int newSpawnLevel(int highestLevel)
 	{
-		print("Spawning a monster, highest lvl: " + highestLevel);
+		//print("Spawning a monster, highest lvl: " + highestLevel);
 		if(highestLevel == 1)
 			return 1;
 		float sum = 0;
@@ -188,7 +190,7 @@ public class TimeMap : MonoBehaviour {
 			sum += weights[i];
 		}
 		float randomvalue = Random.Range(0, sum);
-		print("from 0 to " + sum + " chose " + randomvalue);
+		//print("from 0 to " + sum + " chose " + randomvalue);
 		for (int i = 0; i < (highestLevel - 1); i++) {
 			if(randomvalue < weights[i]) {
 				return i + 1;
@@ -220,7 +222,7 @@ public class TimeMap : MonoBehaviour {
 				m.neighbours.Add (monster);
 				int useless = mon.neighbours.Count;
 				mon.neighbours.Add (g);
-				print ("Linked" + mon.tileX + " " + mon.tileY + " to " + m.tileX + " " + m.tileY);
+				//print ("Linked" + mon.tileX + " " + mon.tileY + " to " + m.tileX + " " + m.tileY);
 			}
 		}
 	}
@@ -249,7 +251,7 @@ public class TimeMap : MonoBehaviour {
 					foreach (GameObject neighbour in cur.neighbours) {	
 						Monsters neighbourMonster = neighbour.GetComponent<Monsters> ();
 						if (!neighbourMonster.markDestroy) {
-							print ("hey this is neighbors:" + neighbourMonster.tileX + neighbourMonster.tileY);
+							//print ("hey this is neighbors:" + neighbourMonster.tileX + neighbourMonster.tileY);
 							print ("neighbor count:" + cur.neighbours.Count);
 							q.Enqueue (neighbourMonster);
 							neighbourMonster.markDestroy = true;
@@ -293,7 +295,6 @@ public class TimeMap : MonoBehaviour {
 
 
 					// dropping position to be CHANGED.
-					print("spawnpoint: " + selectedUnit.GetComponent<Unit>().tileX + " y: " + selectedUnit.GetComponent<Unit>().tileY);
 					GameObject newSpawn	= (GameObject)Instantiate(selectedMonster.GetComponent<Monsters>().Monster, new Vector3(selectedUnit.GetComponent<Unit>().tileX, selectedUnit.GetComponent<Unit>().tileY, -1), Quaternion.identity);
 					//newSpawn.gameObject.tag = "Monster1";
 					newSpawn.GetComponent<Monsters>().tileX = selectedUnit.GetComponent<Unit>().tileX;
@@ -369,7 +370,6 @@ public class TimeMap : MonoBehaviour {
 
 			//pick up
 			if(monsterList.Count != 0) {
-				print(monsterList);
 				for(int i = 0; i < monsterList.Count; i++) {
 					if(monsterList[i].GetComponent<Monsters>().tileX == selectedUnit.GetComponent<Unit>().tileX && monsterList[i].GetComponent<Monsters>().tileY == selectedUnit.GetComponent<Unit>().tileY) {
 						
@@ -381,5 +381,18 @@ public class TimeMap : MonoBehaviour {
 				}
 			}
 		}
+	}
+	// game ends when player drops(not carrying) the 36th monster on floor and monsterList.Count == 36
+	public void isGameEnd() {
+        if (monsterList.Count == 36 && !selectedUnit.GetComponent<Unit>().carrying) {
+            print ("you lose");
+            SceneManager.LoadScene (2);
+            return;
+
+            //SceneManager.LoadScene (2);
+        } else {
+        //print ("play" + safeStop);
+        safeStop++;
+        }
 	}
 }

@@ -52,7 +52,6 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\ClickableTile.cs" />
-     <Compile Include="Assets\Mon1.cs" />
      <Compile Include="Assets\Monsters.cs" />
      <Compile Include="Assets\Scripts\Helper.cs" />
      <Compile Include="Assets\StartScene.cs" />
