@@ -122,7 +122,7 @@ public class TimeMap : MonoBehaviour {
 		selectedUnit.GetComponent<Unit>().carrying = true;
 
 		monsterList.Remove(mon);
-		mon.GetComponent<Monsters>().destroy ();
+		mon.GetComponent<Monsters>().destroy (true);
 
         carryMon.changeCarrying();
 
@@ -288,7 +288,7 @@ public class TimeMap : MonoBehaviour {
 						occupiedCount--;
 						occupationArray [gmonster.tileX, gmonster.tileY] = false;
 						monsterList.Remove (g);
-						gmonster.destroy ();
+						gmonster.destroy (false);
 					}
 
 
