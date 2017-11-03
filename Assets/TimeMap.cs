@@ -14,7 +14,7 @@ public class TimeMap : MonoBehaviour {
 
 	public bool[,] occupationArray = new bool[8, 8];
 	public int occupiedCount = 0;
-	int highestLevel = 8;
+	int highestLevel = 1;
 
 	public Unit unit;
 	public Monsters monsters;
@@ -23,8 +23,6 @@ public class TimeMap : MonoBehaviour {
 	public ClickableTile clickableTile;
 
 	public List<GameObject> monsterList = new List<GameObject>();
-
-
 
 	int[,] tiles;
 	public bool carryingMove = false; // if true then cant move on monster
@@ -35,8 +33,8 @@ public class TimeMap : MonoBehaviour {
 	float sinceLastSpawn = 4;
 
 	//Dynamic difficulty
-	static int max = 6;
-	static int min = 3;
+	static int max = 3;
+	static int min = 1;
 	static float F = 1.01f;
 	
 	//Monster spawning weights
@@ -145,8 +143,30 @@ public class TimeMap : MonoBehaviour {
             // 2. x and y is occupied
             while((randomX == selectedUnit.GetComponent<Unit>().tileX && randomY == selectedUnit.GetComponent<Unit>().tileY) ||
                 occupationArray[randomX, randomY] == true) {
-				randomX = Random.Range(0,6);
-				randomY = Random.Range(0,6);
+
+                //TODO if monsterList < 32 then monsters shouldn't spawn next to player
+                if (monsterList.Count < 35 &&
+                    ((randomX == selectedUnit.GetComponent<Unit>().tileX && // x=0 y= 1 || -1
+                    Mathf.Abs(randomY - selectedUnit.GetComponent<Unit>().tileY) == 1) ||
+                    (Mathf.Abs(randomX - selectedUnit.GetComponent<Unit>().tileX) == 1 && // x= 1 || -1 y=0
+                    randomY == selectedUnit.GetComponent<Unit>().tileY))) {
+
+                        randomX = Random.Range(0,6);
+                        randomY = Random.Range(0,6);
+                        print ("less than 32 " + randomX + " " + randomY);
+                        print("asd" + (Mathf.Abs(randomY - selectedUnit.GetComponent<Unit>().tileY) == 1));
+                    // re-roll if next to player
+                    /*if () {
+
+                        print ("was gonna spawn next to me " + randomX + " " + randomY);
+                        randomX = Random.Range(0,6);
+                        randomY = Random.Range(0,6);
+                    } */
+                } else {
+                    randomX = Random.Range(0,6);
+                    randomY = Random.Range(0,6);
+                }
+
             }
 
             occupiedCount++;
