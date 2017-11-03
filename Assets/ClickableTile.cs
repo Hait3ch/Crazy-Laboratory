@@ -11,13 +11,15 @@ public class ClickableTile : MonoBehaviour {
 
     // playing the game with mouse
     // move by clicking and drop by right-click
+	/*
 	void OnMouseUp() {
 		map.MoveSelectedUnitTo(tileX, tileY);
 	}
+	*/
 
 	void Update() {
 
-        if ((Input.GetKeyDown("space") || Input.GetMouseButtonDown(1)) && map.selectedUnit.GetComponent<Unit>().carrying) {
+        if (Input.GetKeyDown("space") /*( || Input.GetMouseButtonDown(1))*/ && map.selectedUnit.GetComponent<Unit>().carrying) {
             map.selectedUnit.GetComponent<Unit>().carrying = false;
 
             GameObject newSpawn	= (GameObject)Instantiate(map.selectedMonster.GetComponent<Monsters>().Monster, new Vector3(map.selectedUnit.GetComponent<Unit>().tileX, map.selectedUnit.GetComponent<Unit>().tileY, -1), Quaternion.identity);
@@ -39,7 +41,6 @@ public class ClickableTile : MonoBehaviour {
 
             // Check if game ends after dropping monster
             map.isGameEnd();
-            print("right and carried and dropped");
 
         }
     }

@@ -13,8 +13,6 @@ public class Unit : MonoBehaviour {
 
 	public TimeMap map;
 
-
-
 	void Update() {
         if (Input.GetKeyDown(KeyCode.LeftArrow)) {
             map.MoveSelectedUnitTo(Convert.ToInt32(Math.Max(0, transform.position.x - 1)), Convert.ToInt32(transform.position.y));
@@ -28,12 +26,5 @@ public class Unit : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.DownArrow)) {
             map.MoveSelectedUnitTo(Convert.ToInt32(transform.position.x), Convert.ToInt32(Mathf.Max(0, transform.position.y - 1)));
         }
-
-        //TODO NOWORKING PickUp fused monster
-        /*
-        if (Input.GetKeyDown("space") && !map.selectedUnit.GetComponent<Unit>().carrying) {
-            map.MoveSelectedUnitTo(Convert.ToInt32(transform.position.x), Convert.ToInt32(transform.position.y));
-        }
-        */
     }
 }
