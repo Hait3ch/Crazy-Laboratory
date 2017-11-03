@@ -18,6 +18,7 @@ public class TimeMap : MonoBehaviour {
 
 	public Unit unit;
 	public Monsters monsters;
+    public CarryMon carryMon;
 	public TileType[] tileTypes;
 	public ClickableTile clickableTile;
 
@@ -32,7 +33,6 @@ public class TimeMap : MonoBehaviour {
 	int counter = 0;
 	int initialSpawn = 0;
 	float sinceLastSpawn = 4;
-    int safeStop = 0;
 
 	//Dynamic difficulty
 	static int max = 3;
@@ -51,7 +51,6 @@ public class TimeMap : MonoBehaviour {
 		weights [0] = 1;
 		for (int i = 1; i < maxMonsterLevelPossible; i++) {
 			weights [i] = weights [i - 1] * multiplier;
-			//print (weights [i]);
 		}
 
 		// Putting the position of units
@@ -117,15 +116,18 @@ public class TimeMap : MonoBehaviour {
 		sinceLastSpawn++;
 	}
 
-
+    // Defines what level monster is being carried
 	public void CarryMonster(GameObject mon) {
-		print ("taking away from " + mon.GetComponent<Monsters>().tileX + mon.GetComponent<Monsters>().tileY);
+
 		occupationArray [mon.GetComponent<Monsters>().tileX, mon.GetComponent<Monsters>().tileY] = false;
 		selectedUnit.GetComponent<Unit> ().carryingLevel = mon.GetComponent<Monsters> ().level;
-		print ("carrying level is " + selectedUnit.GetComponent<Unit> ().carryingLevel);
+		selectedUnit.GetComponent<Unit>().carrying = true;
+
 		monsterList.Remove(mon);
 		mon.GetComponent<Monsters>().destroy ();
-		selectedUnit.GetComponent<Unit>().carrying = true;
+
+        carryMon.changeCarrying();
+
 		occupiedCount--;
 	}
 
@@ -138,21 +140,15 @@ public class TimeMap : MonoBehaviour {
 			var randomX = Random.Range(0,6);
 			var randomY = Random.Range(0,6);
 
-
-            //TODO does the game bug here or in other while?
-
-            isGameEnd();
             // re-roll for reasons:
             // 1. can't be on top of player
             // 2. x and y is occupied
             while((randomX == selectedUnit.GetComponent<Unit>().tileX && randomY == selectedUnit.GetComponent<Unit>().tileY) ||
-                occupationArray[randomX, randomY] == true
-                ) {
-                print ("uh oh occupied");
+                occupationArray[randomX, randomY] == true) {
 				randomX = Random.Range(0,6);
 				randomY = Random.Range(0,6);
             }
-            print ("occ " + occupationArray[randomX, randomY]);
+
             occupiedCount++;
    			occupationArray [randomX, randomY] = true;
 
@@ -215,7 +211,7 @@ public class TimeMap : MonoBehaviour {
 				((m.tileX == (mon.tileX - 1)&&m.tileY == mon.tileY) || 
 				(m.tileX == (mon.tileX + 1)&&m.tileY == mon.tileY) ||
 				(m.tileY == (mon.tileY - 1)&&m.tileX == mon.tileX) || 
-					(m.tileY == (mon.tileY + 1))&&m.tileX == mon.tileX)) {
+				(m.tileY == (mon.tileY + 1))&&m.tileX == mon.tileX)) {
 				if (m.neighbours == null) {
 					m.neighbours = new HashSet<GameObject> ();
 				}
@@ -260,20 +256,6 @@ public class TimeMap : MonoBehaviour {
 					}
 				}
 
-				/*
-				print ("monsterObjectToRemove.Count+ " + monsterObjectToRemove.Count);
-				if (monsterObjectToRemove.Count >= 3) {
-					foreach (GameObject monsterObject in monsterObjectToRemove) {
-						Monsters gmonster = monsterObject.GetComponent<Monsters> ();
-						monsterList.Remove (monsterObject);
-						gmonster.destroy ();
-						occupiedCount--;
-						occupationArray [gmonster.tileX, gmonster.tileY] = false;
-					}
-				}
-
-*/
-
 				//Find the to-be-removed monsters
 				List<GameObject> toremove = new List<GameObject> ();
 				foreach (GameObject g in monsterList) {
@@ -284,7 +266,6 @@ public class TimeMap : MonoBehaviour {
 				}
 
 				if (toremove.Count >= 3) {
-					print ("clear count" + toremove.Count);
 					foreach (GameObject g in toremove) {
 						Monsters gmonster = g.GetComponent<Monsters> ();
 						occupiedCount--;
@@ -319,15 +300,6 @@ public class TimeMap : MonoBehaviour {
 						gmonster.markDestroy = false;
 					}
 				}
-
-				/*
-				//Remove them from the monsterlist
-				foreach (GameObject woad in toremove) {
-					monsterList.Remove (woad);
-				}
-				*/
-
-
 			}
 		}
 	}
@@ -384,15 +356,10 @@ public class TimeMap : MonoBehaviour {
 	}
 	// game ends when player drops(not carrying) the 36th monster on floor and monsterList.Count == 36
 	public void isGameEnd() {
-        if (monsterList.Count == 36 && !selectedUnit.GetComponent<Unit>().carrying) {
+        if (monsterList.Count >= 36 && !selectedUnit.GetComponent<Unit>().carrying) {
             print ("you lose");
             SceneManager.LoadScene (2);
-            return;
-
-            //SceneManager.LoadScene (2);
-        } else {
-        //print ("play" + safeStop);
-        safeStop++;
+            //if(Input.GetKeyDown("space") && Input.GetKeyDown(KeyCode.DownArrow))
         }
 	}
 }

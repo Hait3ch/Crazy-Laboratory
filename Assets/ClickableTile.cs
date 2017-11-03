@@ -35,6 +35,8 @@ public class ClickableTile : MonoBehaviour {
 
             map.fuse (newSpawn);
 
+            map.selectedUnit.GetComponent<Unit>().carryingLevel = 0;
+
             // Check if game ends after dropping monster
             map.isGameEnd();
             print("right and carried and dropped");

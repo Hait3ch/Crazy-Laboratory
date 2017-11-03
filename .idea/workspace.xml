@@ -2,27 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="72f8065b-cb45-4861-9eb7-83a6ce3a4a78" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Assets/Edge.mat" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Assets/Edge.mat.meta" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Assets/Edge.prefab" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Assets/Edge.prefab.meta" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Assets/Mon1.cs" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Assets/Mon1.cs.meta" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Assets/Wall.mat" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Assets/Wall.mat.meta" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Assets/Wall.prefab" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Assets/Wall.prefab.meta" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Library/metadata/4a/4a2087c60ac88a6419f7eeab83be835b" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Library/metadata/4a/4a2087c60ac88a6419f7eeab83be835b.info" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Library/metadata/5e/5e801ad6575980548939c230cf9d6919" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Library/metadata/5e/5e801ad6575980548939c230cf9d6919.info" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Library/metadata/8b/8bcf1df07fe973841b529852eca13d3a" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Library/metadata/8b/8bcf1df07fe973841b529852eca13d3a.info" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Library/metadata/a4/a4481c75f65eb1a49875302be9735666" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Library/metadata/a4/a4481c75f65eb1a49875302be9735666.info" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Library/metadata/af/afa6ac79f8d730849bc8b5de70659e4d" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Library/metadata/af/afa6ac79f8d730849bc8b5de70659e4d.info" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Library/EditorUserBuildSettings.asset" afterPath="$PROJECT_DIR$/Library/EditorUserBuildSettings.asset" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Temp/UnityTempFile-6d0b018230bbd6041abdcc9b22c04844" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Temp/UnityTempFile-7e3f54e8a06adc448b155621cdc0c5bc" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Temp/UnityTempFile-a318c757d41f340409e1da2041fa6f1d" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Temp/UnityTempFile-ca67643f4fe9a0c4995a9689d29d1f97" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Temp/UnityTempFile-fce3cce9f8de3444987ef77ab29e13ff" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Library/InspectorExpandedItems.asset" afterPath="$PROJECT_DIR$/Library/InspectorExpandedItems.asset" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Library/ScriptAssemblies/Assembly-CSharp.dll" afterPath="$PROJECT_DIR$/Library/ScriptAssemblies/Assembly-CSharp.dll" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Library/ScriptAssemblies/Assembly-CSharp.dll.mdb" afterPath="$PROJECT_DIR$/Library/ScriptAssemblies/Assembly-CSharp.dll.mdb" />
@@ -33,21 +17,19 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Library/metadata/16/16970f55542142d428b2500055fafd89" afterPath="$PROJECT_DIR$/Library/metadata/16/16970f55542142d428b2500055fafd89" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Library/metadata/36/360155fdf22b085449cfe4dabd443734" afterPath="$PROJECT_DIR$/Library/metadata/36/360155fdf22b085449cfe4dabd443734" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Library/metadata/65/65ea0e2a4b399f84ca06135079ebd8de" afterPath="$PROJECT_DIR$/Library/metadata/65/65ea0e2a4b399f84ca06135079ebd8de" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Library/metadata/85/85be966602b466d44ae2535f339a5219" afterPath="$PROJECT_DIR$/Library/metadata/85/85be966602b466d44ae2535f339a5219" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Temp/UnityLockfile" afterPath="$PROJECT_DIR$/Temp/UnityLockfile" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Temp/__Backupscenes/0.backup" afterPath="$PROJECT_DIR$/Temp/__Backupscenes/0.backup" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Assembly-CSharp.csproj" afterPath="$PROJECT_DIR$/Assembly-CSharp.csproj" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Assets/ClickableTile.cs" afterPath="$PROJECT_DIR$/Assets/ClickableTile.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Assets/Monsters.cs" afterPath="$PROJECT_DIR$/Assets/Monsters.cs" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Assets/TimeMap.cs" afterPath="$PROJECT_DIR$/Assets/TimeMap.cs" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Assets/Unit.cs" afterPath="$PROJECT_DIR$/Assets/Unit.cs" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Assets/_SCENE_.unity" afterPath="$PROJECT_DIR$/Assets/_SCENE_.unity" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Library/CurrentLayout.dwlt" afterPath="$PROJECT_DIR$/Library/CurrentLayout.dwlt" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Library/CurrentMaximizeLayout.dwlt" afterPath="$PROJECT_DIR$/Library/CurrentMaximizeLayout.dwlt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Library/ProjectSettings.asset" afterPath="$PROJECT_DIR$/Library/ProjectSettings.asset" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Library/EditorInstance.json" afterPath="$PROJECT_DIR$/Library/EditorInstance.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Library/LastSceneManagerSetup.txt" afterPath="$PROJECT_DIR$/Library/LastSceneManagerSetup.txt" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Library/shadercompiler-UnityShaderCompiler.exe0.log" afterPath="$PROJECT_DIR$/Library/shadercompiler-UnityShaderCompiler.exe0.log" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" afterPath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ProjectSettings/GraphicsSettings.asset" afterPath="$PROJECT_DIR$/ProjectSettings/GraphicsSettings.asset" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/Temp/" />
@@ -65,8 +47,18 @@
       <file leaf-file-name="TimeMap.cs" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Assets/TimeMap.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="493">
-              <caret line="142" column="0" lean-forward="true" selection-start-line="142" selection-start-column="0" selection-end-line="142" selection-end-column="0" />
+            <state relative-caret-position="473">
+              <caret line="358" column="31" lean-forward="false" selection-start-line="358" selection-start-column="31" selection-end-line="358" selection-end-column="31" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CarryMon.cs" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Assets/CarryMon.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-371">
+              <caret line="25" column="0" lean-forward="false" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -75,8 +67,8 @@
       <file leaf-file-name="ClickableTile.cs" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Assets/ClickableTile.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-100">
-              <caret line="8" column="22" lean-forward="false" selection-start-line="8" selection-start-column="19" selection-end-line="8" selection-end-column="22" />
+            <state relative-caret-position="550">
+              <caret line="40" column="21" lean-forward="false" selection-start-line="40" selection-start-column="21" selection-end-line="40" selection-end-column="21" />
               <folding />
             </state>
           </provider>
@@ -85,8 +77,8 @@
       <file leaf-file-name="Monsters.cs" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Assets/Monsters.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1575">
-              <caret line="66" column="14" lean-forward="false" selection-start-line="66" selection-start-column="14" selection-end-line="66" selection-end-column="14" />
+            <state relative-caret-position="-146">
+              <caret line="49" column="28" lean-forward="true" selection-start-line="49" selection-start-column="28" selection-end-line="49" selection-end-column="28" />
               <folding />
             </state>
           </provider>
@@ -95,8 +87,8 @@
       <file leaf-file-name="Unit.cs" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Assets/Unit.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="925">
-              <caret line="37" column="10" lean-forward="false" selection-start-line="37" selection-start-column="10" selection-end-line="37" selection-end-column="10" />
+            <state relative-caret-position="479">
+              <caret line="32" column="10" lean-forward="true" selection-start-line="32" selection-start-column="10" selection-end-line="32" selection-end-column="10" />
               <folding />
             </state>
           </provider>
@@ -106,7 +98,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>0,5</find>
       <find>update</find>
       <find>spawn</find>
       <find>&quot;for</find>
@@ -117,7 +108,6 @@
       <find>counterIncrease</find>
       <find>floor</find>
       <find>isfull</find>
-      <find>carrying</find>
       <find>from</find>
       <find>print</find>
       <find>occupied</find>
@@ -125,10 +115,19 @@
       <find>gameEnd</find>
       <find>linked</find>
       <find>monsterlist c</find>
-      <find>destroyed</find>
-      <find>space</find>
       <find>selec</find>
       <find>while</find>
+      <find>destroyed</find>
+      <find>safes</find>
+      <find>isGameEnd</find>
+      <find>carrying</find>
+      <find>removed</find>
+      <find>pick</find>
+      <find>myImageComponent</find>
+      <find>space</find>
+      <find>carrying</find>
+      <find>carr</find>
+      <find>carryingLevel</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -139,7 +138,10 @@
       <list>
         <option value="$PROJECT_DIR$/Assets/Monsters.cs" />
         <option value="$PROJECT_DIR$/Assets/Unit.cs" />
+        <option value="$PROJECT_DIR$/Assets/carryingMon.cs" />
+        <option value="$PROJECT_DIR$/Assets/CarryingMon.cs" />
         <option value="$PROJECT_DIR$/Assets/ClickableTile.cs" />
+        <option value="$PROJECT_DIR$/Assets/CarryMon.cs" />
         <option value="$PROJECT_DIR$/Assets/TimeMap.cs" />
       </list>
     </option>
@@ -194,6 +196,20 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="Library" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SpaceUp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SpaceUp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="Assets" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -208,6 +224,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="HbShouldOpenHtmlAsHb" value="" />
+    <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file://C:/Users/hai_5/Desktop/SpaceUp/SpaceUp/SpaceUp/Assets/Monsters.cs" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -298,12 +315,12 @@
       <updated>1509599968466</updated>
       <workItem from="1509599970027" duration="694000" />
       <workItem from="1509600685170" duration="119000" />
-      <workItem from="1509600819012" duration="18151000" />
+      <workItem from="1509600819012" duration="30179000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="18964000" />
+    <option name="totallyTimeSpent" value="30992000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1048" extended-state="6" />
@@ -362,34 +379,50 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Assets/Monsters.cs">
+    <entry file="file://$PROJECT_DIR$/Assets/CarryingMon.cs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1575">
-          <caret line="66" column="14" lean-forward="false" selection-start-line="66" selection-start-column="14" selection-end-line="66" selection-end-column="14" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Assets/Unit.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="925">
-          <caret line="37" column="10" lean-forward="false" selection-start-line="37" selection-start-column="10" selection-end-line="37" selection-end-column="10" />
+        <state relative-caret-position="50">
+          <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="3" selection-end-column="21" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Assets/ClickableTile.cs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-100">
-          <caret line="8" column="22" lean-forward="false" selection-start-line="8" selection-start-column="19" selection-end-line="8" selection-end-column="22" />
+        <state relative-caret-position="550">
+          <caret line="40" column="21" lean-forward="false" selection-start-line="40" selection-start-column="21" selection-end-line="40" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Assets/Unit.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="479">
+          <caret line="32" column="10" lean-forward="true" selection-start-line="32" selection-start-column="10" selection-end-line="32" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Assets/Monsters.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-146">
+          <caret line="49" column="28" lean-forward="true" selection-start-line="49" selection-start-column="28" selection-end-line="49" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Assets/CarryMon.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-371">
+          <caret line="25" column="0" lean-forward="false" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Assets/TimeMap.cs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="493">
-          <caret line="142" column="0" lean-forward="true" selection-start-line="142" selection-start-column="0" selection-end-line="142" selection-end-column="0" />
+        <state relative-caret-position="473">
+          <caret line="358" column="31" lean-forward="false" selection-start-line="358" selection-start-column="31" selection-end-line="358" selection-end-column="31" />
           <folding />
         </state>
       </provider>

@@ -15,7 +15,6 @@ public class Unit : MonoBehaviour {
 
 
 
-
 	void Update() {
         if (Input.GetKeyDown(KeyCode.LeftArrow)) {
             map.MoveSelectedUnitTo(Convert.ToInt32(Math.Max(0, transform.position.x - 1)), Convert.ToInt32(transform.position.y));
