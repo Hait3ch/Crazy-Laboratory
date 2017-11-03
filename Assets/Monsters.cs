@@ -40,7 +40,10 @@ public class Monsters : MonoBehaviour {
 		// Load the sprites from a sprite sheet file (png). 
 		// Note: The file specified must exist in a folder named Resources
 		if (level > 0) {
-			this.GetComponent<SpriteRenderer> ().sprite = sprites [level - 1];
+		    if (level >= 9)
+		        this.GetComponent<SpriteRenderer> ().sprite = sprites [0];
+		    else
+                this.GetComponent<SpriteRenderer> ().sprite = sprites [level - 1];
 			float myScale = 0.4f;
 			GetComponent<SpriteRenderer>().transform.localScale = new Vector3(myScale, myScale, myScale);
 		}

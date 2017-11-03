@@ -14,7 +14,7 @@ public class TimeMap : MonoBehaviour {
 
 	public bool[,] occupationArray = new bool[8, 8];
 	public int occupiedCount = 0;
-	int highestLevel = 1;
+	int highestLevel = 8;
 
 	public Unit unit;
 	public Monsters monsters;
@@ -35,8 +35,8 @@ public class TimeMap : MonoBehaviour {
 	float sinceLastSpawn = 4;
 
 	//Dynamic difficulty
-	static int max = 3;
-	static int min = 1;
+	static int max = 6;
+	static int min = 3;
 	static float F = 1.01f;
 	
 	//Monster spawning weights
@@ -153,19 +153,16 @@ public class TimeMap : MonoBehaviour {
    			occupationArray [randomX, randomY] = true;
 
 			newSpawn = (GameObject)Instantiate(selectedMonster.GetComponent<Monsters>().Monster, new Vector3(randomX, randomY, -1), Quaternion.identity);
-			newSpawn.gameObject.tag = "Monster1";
+
 			newSpawn.GetComponent<Monsters>().tileX = randomX;
 			newSpawn.GetComponent<Monsters>().tileY = randomY;
 			newSpawn.GetComponent<Monsters> ().level = newSpawnLevel (highestLevel);
 			newSpawn.GetComponent<Monsters> ().UpdateSprite ();
 
-
-			//print ("occupiedCount " + occupiedCount);
-
 			monsterList.Add(newSpawn);
 			connect(newSpawn);
 			isGameEnd();
-            print("Monsterlist count: " + monsterList.Count);
+            //print("Monsterlist count: " + monsterList.Count);
 		}
 
 
@@ -206,7 +203,7 @@ public class TimeMap : MonoBehaviour {
 		}
 		foreach (GameObject g in monsterList) {
 			Monsters m = g.GetComponent<Monsters> ();
-			//TODO Check if same level
+			//Check if same level
 			if (m.level == mon.level &&
 				((m.tileX == (mon.tileX - 1)&&m.tileY == mon.tileY) || 
 				(m.tileX == (mon.tileX + 1)&&m.tileY == mon.tileY) ||
@@ -282,18 +279,24 @@ public class TimeMap : MonoBehaviour {
 					newSpawn.GetComponent<Monsters>().tileY = selectedUnit.GetComponent<Unit>().tileY;
 
 					// fuse to a higher level monster
-					newSpawn.GetComponent<Monsters>().level = mon.level + 1;
-					newSpawn.GetComponent<Monsters> ().UpdateSprite ();
-					highestLevel = Mathf.Max(highestLevel, mon.level + 1);
-					timesCombined++;
-					monsterList.Add(newSpawn);
-					occupiedCount++;
-					occupationArray [selectedUnit.GetComponent<Unit>().tileX, selectedUnit.GetComponent<Unit>().tileY] = true;
+					if(newSpawn.GetComponent<Monsters>().level < 8) {
+                        newSpawn.GetComponent<Monsters>().level = mon.level + 1;
+                        newSpawn.GetComponent<Monsters> ().UpdateSprite ();
+                        highestLevel = Mathf.Max(highestLevel, mon.level + 1);
+                    // When monster level goes over 8, it spawns lvl 1 monster
+                    } else {
+                        newSpawn.GetComponent<Monsters>().level = 1;
+                        newSpawn.GetComponent<Monsters> ().UpdateSprite ();
+                        highestLevel = 8;
+                    }
 
-					connect(newSpawn);
+                    timesCombined++;
+                    monsterList.Add(newSpawn);
+                    occupiedCount++;
+                    occupationArray [selectedUnit.GetComponent<Unit>().tileX, selectedUnit.GetComponent<Unit>().tileY] = true;
 
-					fuse (newSpawn);
-
+                    connect(newSpawn);
+                    fuse (newSpawn);
 				} else {
 					foreach (GameObject g in toremove) {
 						Monsters gmonster = g.GetComponent<Monsters> ();
@@ -354,10 +357,10 @@ public class TimeMap : MonoBehaviour {
 			}
 		}
 	}
-	// game ends when player drops(not carrying) the 36th monster on floor and monsterList.Count == 36
+	// game ends when player drops(not carrying) the 36th monster on floor and monsterList.Count more than 36
 	public void isGameEnd() {
         if (monsterList.Count >= 36 && !selectedUnit.GetComponent<Unit>().carrying) {
-            print ("you lose");
+            print ("You lose!");
             SceneManager.LoadScene (2);
             //if(Input.GetKeyDown("space") && Input.GetKeyDown(KeyCode.DownArrow))
         }
