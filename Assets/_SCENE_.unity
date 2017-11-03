@@ -108,6 +108,56 @@ NavMeshSettings:
     tileSize: 256
     accuratePlacement: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1001 &26653485
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4982902960588142, guid: 4fa8fe3a263264b3b9ea9a8f95d14e4e, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4982902960588142, guid: 4fa8fe3a263264b3b9ea9a8f95d14e4e, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4982902960588142, guid: 4fa8fe3a263264b3b9ea9a8f95d14e4e, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4982902960588142, guid: 4fa8fe3a263264b3b9ea9a8f95d14e4e, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4982902960588142, guid: 4fa8fe3a263264b3b9ea9a8f95d14e4e, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4982902960588142, guid: 4fa8fe3a263264b3b9ea9a8f95d14e4e, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4982902960588142, guid: 4fa8fe3a263264b3b9ea9a8f95d14e4e, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4982902960588142, guid: 4fa8fe3a263264b3b9ea9a8f95d14e4e, type: 2}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1547679353811178, guid: 4fa8fe3a263264b3b9ea9a8f95d14e4e, type: 2}
+      propertyPath: m_Name
+      value: Particle System
+      objectReference: {fileID: 0}
+    - target: {fileID: 1547679353811178, guid: 4fa8fe3a263264b3b9ea9a8f95d14e4e, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 4fa8fe3a263264b3b9ea9a8f95d14e4e, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &243571424
 GameObject:
   m_ObjectHideFlags: 0
@@ -571,6 +621,7 @@ MonoBehaviour:
   sprite6: {fileID: 0}
   sprite7: {fileID: 0}
   sprite8: {fileID: 0}
+  clearEffect: {fileID: 0}
   tileX: 0
   tileY: 0
   level: 0
