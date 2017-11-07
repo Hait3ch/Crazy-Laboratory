@@ -14,9 +14,3 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/End Scene.unity
     guid: e7b88f00fc95c4258bef2103a3fede6e
-  - enabled: 1
-    path: Assets/Help.unity
-    guid: 0172b79530ea72349a7f70befa287a88
-  - enabled: 1
-    path: Assets/Help2.unity
-    guid: e6a5137b1de74b94baa15d0eef83070f
