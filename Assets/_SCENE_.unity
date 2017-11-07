@@ -421,10 +421,10 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 14
+    m_FontSize: 30
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 10
+    m_MinSize: 3
     m_MaxSize: 40
     m_Alignment: 4
     m_AlignByGeometry: 0
@@ -465,7 +465,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1359324212}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -505.61, y: -380.3, z: 10}
+  m_LocalPosition: {x: -505.39, y: -380.5, z: 10}
   m_LocalScale: {x: 0.4, y: 0.4, z: 1}
   m_Children: []
   m_Father: {fileID: 1951112782}
@@ -571,6 +571,7 @@ MonoBehaviour:
   sprite6: {fileID: 0}
   sprite7: {fileID: 0}
   sprite8: {fileID: 0}
+  clearEffect: {fileID: 0}
   tileX: 0
   tileY: 0
   level: 0
@@ -793,8 +794,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 307, y: 276}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchoredPosition: {x: 326.2, y: 292.6}
+  m_SizeDelta: {x: 198.5, y: 63.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1678120137
 MonoBehaviour:
@@ -1254,8 +1255,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 307, y: 219}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchoredPosition: {x: 326.22, y: 225.9}
+  m_SizeDelta: {x: 198.45, y: 43.9}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1991291598
 MonoBehaviour:
@@ -1278,7 +1279,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 18
+    m_FontSize: 30
     m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 0
