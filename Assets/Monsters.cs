@@ -14,6 +14,8 @@ public class Monsters : MonoBehaviour {
 	public Sprite sprite7;
 	public Sprite sprite8;
 
+	public GameObject clearEffect;
+
 	public int tileX;
 	public int tileY;
 	public int level;
@@ -63,14 +65,17 @@ public class Monsters : MonoBehaviour {
 
 
 	//destroy this monster, and remove references to it on its neighbours
-	public void destroy() {
+	public void destroy(bool isCarry) {
 		foreach (GameObject monster in neighbours) {
 			//print ("going to detach " + tileX + tileY + " and " + monster.GetComponent<Monsters> ().tileX + monster.GetComponent<Monsters> ().tileY);
 			monster.GetComponent<Monsters>().detach (gameObject);
 		}
-
+		//Monster.transform.parent.gameObject.AddComponent (clearEffect);
+		if (!isCarry) {
+			GameObject copyClearEffect = Instantiate (clearEffect, gameObject.transform.position, new Quaternion (), Monster.transform.parent);
+			Destroy (copyClearEffect, 2);
+		}
 		Destroy (gameObject);
-
 	}
 
 	public void detach(GameObject mon) {
