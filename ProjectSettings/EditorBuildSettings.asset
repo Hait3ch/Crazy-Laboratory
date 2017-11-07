@@ -20,3 +20,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Help2.unity
     guid: e6a5137b1de74b94baa15d0eef83070f
+  - enabled: 1
+    path: Assets/Screens/Credits.unity
+    guid: fef925a8d3cdb9d489c4d459f5972d48

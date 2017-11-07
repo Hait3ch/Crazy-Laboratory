@@ -51,14 +51,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\CarryMon.cs" />
-     <Compile Include="Assets\ClickableTile.cs" />
-     <Compile Include="Assets\Monsters.cs" />
+     <Compile Include="Assets\Scripts\CarryMon.cs" />
+     <Compile Include="Assets\Scripts\ClickableTile.cs" />
      <Compile Include="Assets\Scripts\Helper.cs" />
-     <Compile Include="Assets\StartScene.cs" />
-     <Compile Include="Assets\TileType.cs" />
-     <Compile Include="Assets\TimeMap.cs" />
-     <Compile Include="Assets\Unit.cs" />
+     <Compile Include="Assets\Scripts\Monsters.cs" />
+     <Compile Include="Assets\Scripts\StartScene.cs" />
+     <Compile Include="Assets\Scripts\TileType.cs" />
+     <Compile Include="Assets\Scripts\TimeMap.cs" />
+     <Compile Include="Assets\Scripts\Unit.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>

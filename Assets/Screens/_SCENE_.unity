@@ -174,7 +174,6 @@ GameObject:
   m_Component:
   - component: {fileID: 350418341}
   - component: {fileID: 350418344}
-  - component: {fileID: 350418343}
   - component: {fileID: 350418342}
   m_Layer: 0
   m_Name: Monster model2
@@ -216,17 +215,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &350418343
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 350418340}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a2087c60ac88a6419f7eeab83be835b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!212 &350418344
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -664,7 +652,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1543650894}
   - component: {fileID: 1543650895}
-  - component: {fileID: 1543650896}
   - component: {fileID: 1543650897}
   m_Layer: 0
   m_Name: Monster model1
@@ -728,17 +715,6 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
---- !u!114 &1543650896
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1543650893}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a2087c60ac88a6419f7eeab83be835b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!50 &1543650897
 Rigidbody2D:
   serializedVersion: 4

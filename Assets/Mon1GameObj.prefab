@@ -60,6 +60,8 @@ MonoBehaviour:
   sprite6: {fileID: 21300000, guid: 623f0d18732ed4b529ef44829724cac9, type: 3}
   sprite7: {fileID: 21300000, guid: 6bd6d59e325ed4e04bdbad9f51a4dcba, type: 3}
   sprite8: {fileID: 21300000, guid: 2ff8ef3c84833435392f3c2f6e46ff97, type: 3}
+  clearEffect: {fileID: 1547679353811178, guid: 4fa8fe3a263264b3b9ea9a8f95d14e4e,
+    type: 2}
   tileX: 0
   tileY: 0
   level: 0

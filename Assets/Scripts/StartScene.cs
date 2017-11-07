@@ -6,7 +6,11 @@ using UnityEngine.SceneManagement;
 public class StartScene : MonoBehaviour {
 
 	public void LoadSceneOnClick (int index) {
-		SceneManager.LoadScene (index);
-		print ("clicking");
-	}
+    		SceneManager.LoadScene (index);
+    		print ("clicking");
+    	}
+
+    public void DoQuit (int index) {
+    		Application.Quit();
+    	}
 }
