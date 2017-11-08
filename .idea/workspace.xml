@@ -1,28 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="72f8065b-cb45-4861-9eb7-83a6ce3a4a78" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Library/ScriptAssemblies/Assembly-CSharp.dll" afterPath="$PROJECT_DIR$/Library/ScriptAssemblies/Assembly-CSharp.dll" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Library/ScriptAssemblies/Assembly-CSharp.dll.mdb" afterPath="$PROJECT_DIR$/Library/ScriptAssemblies/Assembly-CSharp.dll.mdb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Library/assetDatabase3" afterPath="$PROJECT_DIR$/Library/assetDatabase3" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Library/metadata/16/16970f55542142d428b2500055fafd89" afterPath="$PROJECT_DIR$/Library/metadata/16/16970f55542142d428b2500055fafd89" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Library/metadata/18/1802d661d2c946d408c711e5a594723c" afterPath="$PROJECT_DIR$/Library/metadata/18/1802d661d2c946d408c711e5a594723c" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Library/metadata/36/360155fdf22b085449cfe4dabd443734" afterPath="$PROJECT_DIR$/Library/metadata/36/360155fdf22b085449cfe4dabd443734" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Library/metadata/65/65ea0e2a4b399f84ca06135079ebd8de" afterPath="$PROJECT_DIR$/Library/metadata/65/65ea0e2a4b399f84ca06135079ebd8de" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Library/metadata/85/85be966602b466d44ae2535f339a5219" afterPath="$PROJECT_DIR$/Library/metadata/85/85be966602b466d44ae2535f339a5219" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Library/metadata/8a/8a04af999a291466bb8eadf2d1f131de" afterPath="$PROJECT_DIR$/Library/metadata/8a/8a04af999a291466bb8eadf2d1f131de" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Library/metadata/9a/9a1635e47c27f0140b0d7969753fae36" afterPath="$PROJECT_DIR$/Library/metadata/9a/9a1635e47c27f0140b0d7969753fae36" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Library/metadata/9a/9a1635e47c27f0140b0d7969753fae36.info" afterPath="$PROJECT_DIR$/Library/metadata/9a/9a1635e47c27f0140b0d7969753fae36.info" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Assets/Screens/_SCENE_.unity" afterPath="$PROJECT_DIR$/Assets/Screens/_SCENE_.unity" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Assets/Scripts/ClickableTile.cs" afterPath="$PROJECT_DIR$/Assets/Scripts/ClickableTile.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Assets/Scripts/Helper.cs" afterPath="$PROJECT_DIR$/Assets/Scripts/Helper.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Assets/Scripts/Monsters.cs" afterPath="$PROJECT_DIR$/Assets/Scripts/Monsters.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Assets/Scripts/StartScene.cs" afterPath="$PROJECT_DIR$/Assets/Scripts/StartScene.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Assets/Scripts/TimeMap.cs" afterPath="$PROJECT_DIR$/Assets/Scripts/TimeMap.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Assets/Scripts/Unit.cs" afterPath="$PROJECT_DIR$/Assets/Scripts/Unit.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Library/shadercompiler-UnityShaderCompiler.exe0.log" afterPath="$PROJECT_DIR$/Library/shadercompiler-UnityShaderCompiler.exe0.log" />
-    </list>
+    <list default="true" id="72f8065b-cb45-4861-9eb7-83a6ce3a4a78" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/Temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -38,7 +17,7 @@
       <file leaf-file-name="TimeMap.cs" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Assets/Scripts/TimeMap.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-4309">
+            <state relative-caret-position="900">
               <caret line="36" column="20" lean-forward="false" selection-start-line="36" selection-start-column="20" selection-end-line="36" selection-end-column="20" />
               <folding />
             </state>
@@ -315,16 +294,15 @@
       <workItem from="1509599970027" duration="694000" />
       <workItem from="1509600685170" duration="119000" />
       <workItem from="1509600819012" duration="39936000" />
-      <workItem from="1510115005927" duration="4627000" />
+      <workItem from="1510115005927" duration="4806000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="46866000" />
+    <option name="totallyTimeSpent" value="47045000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="0" width="1932" height="1048" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17659353" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -687,7 +665,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Assets/Scripts/TimeMap.cs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-4309">
+        <state relative-caret-position="900">
           <caret line="36" column="20" lean-forward="false" selection-start-line="36" selection-start-column="20" selection-end-line="36" selection-end-column="20" />
           <folding />
         </state>
