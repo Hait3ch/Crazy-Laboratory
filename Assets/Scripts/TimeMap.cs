@@ -6,31 +6,35 @@ using UnityEngine.SceneManagement;
 
 public class TimeMap : MonoBehaviour {
 
-
 	public GameObject selectedUnit;
 	public GameObject selectedMonster;
 	public GameObject selectedMon1;
 	public GameObject newSpawn;
 
 	public bool[,] occupationArray = new bool[8, 8];
+	int[,] tiles;
 	public int occupiedCount = 0;
-	int highestLevel = 1;
+    public bool gameOver = false;
 
+
+    // Other scripts
 	public Unit unit;
 	public Monsters monsters;
     public CarryMon carryMon;
 	public TileType[] tileTypes;
 	public ClickableTile clickableTile;
+	public Helper helper;
 
 	public List<GameObject> monsterList = new List<GameObject>();
 
-	int[,] tiles;
-	public bool carryingMove = false; // if true then cant move on monster
+    // Game settings
+	int highestLevel = 1;
+	float sinceLastSpawn = 4;
+	int initialSpawn = 0;
 	int mapSizeX = 6;
 	int mapSizeY = 6;
+    float timeLeft = 4.0f;
 	int counter = 0;
-	int initialSpawn = 0;
-	float sinceLastSpawn = 4;
 
 	//Dynamic difficulty
 	static int max = 3;
@@ -63,8 +67,6 @@ public class TimeMap : MonoBehaviour {
 				occupationArray [i, j] = false;
 			}
 		}
-
-
 		selectedMonster.transform.position = TileCoordToWorldCoord(selectedMonster.GetComponent<Monsters>().tileX, selectedMonster.GetComponent<Monsters>().tileY);
 
 		SpawnMon();
@@ -144,24 +146,13 @@ public class TimeMap : MonoBehaviour {
             while((randomX == selectedUnit.GetComponent<Unit>().tileX && randomY == selectedUnit.GetComponent<Unit>().tileY) ||
                 occupationArray[randomX, randomY] == true) {
 
-                //TODO if monsterList < 32 then monsters shouldn't spawn next to player
-                if (monsterList.Count < 35 &&
+                if (monsterList.Count < 36 &&
                     ((randomX == selectedUnit.GetComponent<Unit>().tileX && // x=0 y= 1 || -1
                     Mathf.Abs(randomY - selectedUnit.GetComponent<Unit>().tileY) == 1) ||
                     (Mathf.Abs(randomX - selectedUnit.GetComponent<Unit>().tileX) == 1 && // x= 1 || -1 y=0
                     randomY == selectedUnit.GetComponent<Unit>().tileY))) {
-
                         randomX = Random.Range(0,6);
                         randomY = Random.Range(0,6);
-                        print ("less than 32 " + randomX + " " + randomY);
-                        print("asd" + (Mathf.Abs(randomY - selectedUnit.GetComponent<Unit>().tileY) == 1));
-                    // re-roll if next to player
-                    /*if () {
-
-                        print ("was gonna spawn next to me " + randomX + " " + randomY);
-                        randomX = Random.Range(0,6);
-                        randomY = Random.Range(0,6);
-                    } */
                 } else {
                     randomX = Random.Range(0,6);
                     randomY = Random.Range(0,6);
@@ -181,8 +172,6 @@ public class TimeMap : MonoBehaviour {
 
 			monsterList.Add(newSpawn);
 			connect(newSpawn);
-			isGameEnd();
-            //print("Monsterlist count: " + monsterList.Count);
 		}
 
 
@@ -195,7 +184,6 @@ public class TimeMap : MonoBehaviour {
 	//Randomly pick a level to spawn based on the highest level so far
 	int newSpawnLevel(int highestLevel)
 	{
-		//print("Spawning a monster, highest lvl: " + highestLevel);
 		if(highestLevel == 1)
 			return 1;
 		float sum = 0;
@@ -203,7 +191,6 @@ public class TimeMap : MonoBehaviour {
 			sum += weights[i];
 		}
 		float randomvalue = Random.Range(0, sum);
-		//print("from 0 to " + sum + " chose " + randomvalue);
 		for (int i = 0; i < (highestLevel - 1); i++) {
 			if(randomvalue < weights[i]) {
 				return i + 1;
@@ -235,7 +222,6 @@ public class TimeMap : MonoBehaviour {
 				m.neighbours.Add (monster);
 				int useless = mon.neighbours.Count;
 				mon.neighbours.Add (g);
-				//print ("Linked" + mon.tileX + " " + mon.tileY + " to " + m.tileX + " " + m.tileY);
 			}
 		}
 	}
@@ -264,11 +250,8 @@ public class TimeMap : MonoBehaviour {
 					foreach (GameObject neighbour in cur.neighbours) {	
 						Monsters neighbourMonster = neighbour.GetComponent<Monsters> ();
 						if (!neighbourMonster.markDestroy) {
-							//print ("hey this is neighbors:" + neighbourMonster.tileX + neighbourMonster.tileY);
-							print ("neighbor count:" + cur.neighbours.Count);
 							q.Enqueue (neighbourMonster);
 							neighbourMonster.markDestroy = true;
-							//monsterObjectToRemove.Add (neighbour);
 						}
 					}
 				}
@@ -330,6 +313,7 @@ public class TimeMap : MonoBehaviour {
 
 	public void MoveSelectedUnitTo(int x, int y) {
 
+        // Player carrying movement
 		if(selectedUnit.GetComponent<Unit>().carrying == true) {
 			for(int i = 0; i < monsterList.Count; i++) {
 				if(monsterList[i].GetComponent<Monsters>().tileX == x && monsterList[i].GetComponent<Monsters>().tileY == y) {
@@ -338,29 +322,16 @@ public class TimeMap : MonoBehaviour {
 				}
 			}
 			if((selectedUnit.GetComponent<Unit>().tileX - x == -1 || selectedUnit.GetComponent<Unit>().tileX - x == 1) && selectedUnit.GetComponent<Unit>().tileY - y == 0) {
-                selectedUnit.GetComponent<Unit>().tileX = x;
-                selectedUnit.transform.position = TileCoordToWorldCoord(x, y);
-                counterIncrease();
-				SpawnMon();
-
+                helper.MoveAndSpawn(x, y);
 			} else if (selectedUnit.GetComponent<Unit>().tileX - x == 0 && (selectedUnit.GetComponent<Unit>().tileY - y == -1 || selectedUnit.GetComponent<Unit>().tileY - y == 1)) {
-                selectedUnit.GetComponent<Unit>().tileY = y;
-                selectedUnit.transform.position = TileCoordToWorldCoord(x, y);
-                counterIncrease();
-				SpawnMon();
+                helper.MoveAndSpawn(x, y);
 			}
 
 		} else { // carrying false, moving left right, up down
 			if ((selectedUnit.GetComponent<Unit>().tileX - x == -1 || selectedUnit.GetComponent<Unit>().tileX - x == 1) && selectedUnit.GetComponent<Unit>().tileY - y == 0) {
-				selectedUnit.GetComponent<Unit>().tileX = x;
-				selectedUnit.transform.position = TileCoordToWorldCoord(x, y);
-				counterIncrease();
-				SpawnMon();
+				helper.MoveAndSpawn(x, y);
 		} else if (selectedUnit.GetComponent<Unit>().tileX - x == 0 && (selectedUnit.GetComponent<Unit>().tileY - y == -1 || selectedUnit.GetComponent<Unit>().tileY - y == 1)) {
-				selectedUnit.GetComponent<Unit>().tileY = y;
-				selectedUnit.transform.position = TileCoordToWorldCoord(x, y);
-				counterIncrease();
-				SpawnMon();
+				helper.MoveAndSpawn(x, y);
 			}
 
 			//pick up
@@ -377,12 +348,16 @@ public class TimeMap : MonoBehaviour {
 			}
 		}
 	}
-	// game ends when player drops(not carrying) the 36th monster on floor and monsterList.Count more than 36
-	public void isGameEnd() {
-        if (monsterList.Count >= 36 && !selectedUnit.GetComponent<Unit>().carrying) {
-            print ("You lose!");
-            SceneManager.LoadScene (2);
-            //if(Input.GetKeyDown("space") && Input.GetKeyDown(KeyCode.DownArrow))
-        }
+
+	void Update() {
+
+	    // game ends when player drops(not carrying) the 36th monster on floor and monsterList.Count more than 36
+	    if (monsterList.Count >= 36 && !selectedUnit.GetComponent<Unit>().carrying) {
+	        gameOver = true;
+            timeLeft -= Time.deltaTime;
+            print("Time Left: " + Mathf.Round(timeLeft));
+            if(timeLeft < 0)
+                SceneManager.LoadScene (2);
+	    }
 	}
 }

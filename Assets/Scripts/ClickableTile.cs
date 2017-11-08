@@ -23,7 +23,6 @@ public class ClickableTile : MonoBehaviour {
             map.selectedUnit.GetComponent<Unit>().carrying = false;
 
             GameObject newSpawn	= (GameObject)Instantiate(map.selectedMonster.GetComponent<Monsters>().Monster, new Vector3(map.selectedUnit.GetComponent<Unit>().tileX, map.selectedUnit.GetComponent<Unit>().tileY, -1), Quaternion.identity);
-            newSpawn.gameObject.tag = "Monster1";
             newSpawn.GetComponent<Monsters>().tileX = map.selectedUnit.GetComponent<Unit>().tileX;
             newSpawn.GetComponent<Monsters>().tileY = map.selectedUnit.GetComponent<Unit>().tileY;
             newSpawn.GetComponent<Monsters>().level = map.selectedUnit.GetComponent<Unit>().carryingLevel;
@@ -38,10 +37,6 @@ public class ClickableTile : MonoBehaviour {
             map.fuse (newSpawn);
 
             map.selectedUnit.GetComponent<Unit>().carryingLevel = 0;
-
-            // Check if game ends after dropping monster
-            map.isGameEnd();
-
         }
     }
 }

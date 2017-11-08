@@ -20,21 +20,23 @@ public class Unit : MonoBehaviour {
 
 	void Update() {
 		var child = this.gameObject.transform.GetChild (0);
-        if (Input.GetKeyDown(KeyCode.LeftArrow)) {
-			child.GetComponent<SpriteRenderer> ().sprite = unitSpriteLeft;
-            map.MoveSelectedUnitTo(Convert.ToInt32(Math.Max(0, transform.position.x - 1)), Convert.ToInt32(transform.position.y));
-        }
-        if (Input.GetKeyDown(KeyCode.RightArrow)) {
-			child.GetComponent<SpriteRenderer> ().sprite = unitSpriteRight;
-			map.MoveSelectedUnitTo(Convert.ToInt32(Mathf.Min(5, transform.position.x + 1)), Convert.ToInt32(transform.position.y));
-        }
-        if (Input.GetKeyDown(KeyCode.UpArrow)) {
-			child.GetComponent<SpriteRenderer> ().sprite = unitSpriteBack;
-			map.MoveSelectedUnitTo(Convert.ToInt32(transform.position.x), Convert.ToInt32(Mathf.Min(5,transform.position.y + 1)));
-        }
-        if (Input.GetKeyDown(KeyCode.DownArrow)) {
-			child.GetComponent<SpriteRenderer> ().sprite = unitSpriteFront;
-			map.MoveSelectedUnitTo(Convert.ToInt32(transform.position.x), Convert.ToInt32(Mathf.Max(0, transform.position.y - 1)));
+		if(!map.gameOver) {
+            if (Input.GetKeyDown(KeyCode.LeftArrow)) {
+                child.GetComponent<SpriteRenderer> ().sprite = unitSpriteLeft;
+                map.MoveSelectedUnitTo(Convert.ToInt32(Math.Max(0, transform.position.x - 1)), Convert.ToInt32(transform.position.y));
+            }
+            if (Input.GetKeyDown(KeyCode.RightArrow)) {
+                child.GetComponent<SpriteRenderer> ().sprite = unitSpriteRight;
+                map.MoveSelectedUnitTo(Convert.ToInt32(Mathf.Min(5, transform.position.x + 1)), Convert.ToInt32(transform.position.y));
+            }
+            if (Input.GetKeyDown(KeyCode.UpArrow)) {
+                child.GetComponent<SpriteRenderer> ().sprite = unitSpriteBack;
+                map.MoveSelectedUnitTo(Convert.ToInt32(transform.position.x), Convert.ToInt32(Mathf.Min(5,transform.position.y + 1)));
+            }
+            if (Input.GetKeyDown(KeyCode.DownArrow)) {
+                child.GetComponent<SpriteRenderer> ().sprite = unitSpriteFront;
+                map.MoveSelectedUnitTo(Convert.ToInt32(transform.position.x), Convert.ToInt32(Mathf.Max(0, transform.position.y - 1)));
+            }
         }
     }
 }

@@ -117,6 +117,7 @@ GameObject:
   m_Component:
   - component: {fileID: 243571425}
   - component: {fileID: 243571426}
+  - component: {fileID: 243571427}
   m_Layer: 0
   m_Name: Map
   m_TagString: Untagged
@@ -153,6 +154,7 @@ MonoBehaviour:
   selectedMon1: {fileID: 1543650893}
   newSpawn: {fileID: 0}
   occupiedCount: 0
+  gameOver: 0
   unit: {fileID: 1815779231}
   monsters: {fileID: 1437161830}
   carryMon: {fileID: 1359324214}
@@ -163,8 +165,22 @@ MonoBehaviour:
     isWalkable: 1
   clickableTile: {fileID: 114229994305627744, guid: 9753499153151da4282565daeb7d4002,
     type: 2}
+  helper: {fileID: 243571427}
   monsterList: []
   carryingMove: 0
+--- !u!114 &243571427
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 243571424}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1802d661d2c946d408c711e5a594723c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  unit: {fileID: 1815779231}
+  map: {fileID: 243571426}
 --- !u!1 &350418340
 GameObject:
   m_ObjectHideFlags: 0

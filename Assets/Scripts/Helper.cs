@@ -4,28 +4,14 @@ using UnityEngine;
 
 public class Helper : MonoBehaviour {
 
-
 	public Unit unit;
 	public TimeMap map;
 
-	public void pickMonUp() {
-
-
+	public void MoveAndSpawn(int x, int y) {
+        map.selectedUnit.GetComponent<Unit>().tileX = x;
+        map.selectedUnit.GetComponent<Unit>().tileY = y;
+        map.selectedUnit.transform.position = map.TileCoordToWorldCoord(x, y);
+        map.counterIncrease();
+        map.SpawnMon();
 	}
-
-	public void isCarrying() {
-		//foreach(GameObject thisMonster in map.monsterList) {
-
-		//}
-	}
-/*
-	public void canGoOnMon() {
-		try {
-			foreach(GameObject thisMonster in map.monsterList) {
-				if(thisMonster)
-		if(map.monsterList)
-	}
-*/
-
-
 }

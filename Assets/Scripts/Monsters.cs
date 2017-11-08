@@ -67,7 +67,6 @@ public class Monsters : MonoBehaviour {
 	//destroy this monster, and remove references to it on its neighbours
 	public void destroy(bool isCarry) {
 		foreach (GameObject monster in neighbours) {
-			//print ("going to detach " + tileX + tileY + " and " + monster.GetComponent<Monsters> ().tileX + monster.GetComponent<Monsters> ().tileY);
 			monster.GetComponent<Monsters>().detach (gameObject);
 		}
 		//Monster.transform.parent.gameObject.AddComponent (clearEffect);
@@ -79,7 +78,7 @@ public class Monsters : MonoBehaviour {
 	}
 
 	public void detach(GameObject mon) {
-		print ("Is neighbor removed? " + neighbours.Remove (mon));
+	    neighbours.Remove (mon);
 	}
 		
 		
