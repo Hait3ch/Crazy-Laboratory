@@ -334,7 +334,7 @@ public class TimeMap : MonoBehaviour {
 				helper.MoveAndSpawn(x, y);
 			}
 
-			//pick up
+			//pick up by moving on top of monster
 			if(monsterList.Count != 0) {
 				for(int i = 0; i < monsterList.Count; i++) {
 					if(monsterList[i].GetComponent<Monsters>().tileX == selectedUnit.GetComponent<Unit>().tileX && monsterList[i].GetComponent<Monsters>().tileY == selectedUnit.GetComponent<Unit>().tileY) {

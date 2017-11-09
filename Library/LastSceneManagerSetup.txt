@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Screens/Credits.unity
+- path: Assets/Screens/_SCENE_.unity
   isLoaded: 1
   isActive: 1
