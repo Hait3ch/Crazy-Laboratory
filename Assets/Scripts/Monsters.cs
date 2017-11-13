@@ -22,7 +22,6 @@ public class Monsters : MonoBehaviour {
 	public HashSet<GameObject> neighbours; //The neighbouring monsters
 	public bool markDestroy;
 
-
 	public GameObject Monster;
 
 	public TileType[] tileTypes;

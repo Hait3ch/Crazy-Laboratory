@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 85be966602b466d44ae2535f339a5219
-timeCreated: 1509275008
+timeCreated: 1510557252
 licenseType: Free
 MonoImporter:
   serializedVersion: 2
@@ -13,6 +13,8 @@ MonoImporter:
   - sprite6: {fileID: 21300000, guid: 623f0d18732ed4b529ef44829724cac9, type: 3}
   - sprite7: {fileID: 21300000, guid: 6bd6d59e325ed4e04bdbad9f51a4dcba, type: 3}
   - sprite8: {fileID: 21300000, guid: 2ff8ef3c84833435392f3c2f6e46ff97, type: 3}
+  - explodeSound: {fileID: 8300000, guid: 3c797f52ff8e2694faf660b28ca7af02, type: 3}
+  - clearEffect: {instanceID: 0}
   - Monster: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
