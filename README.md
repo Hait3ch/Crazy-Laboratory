@@ -1,2 +1,0 @@
-# SpaceUp
-Game Design project
