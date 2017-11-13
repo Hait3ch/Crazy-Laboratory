@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 65ea0e2a4b399f84ca06135079ebd8de
+timeCreated: 1509727264
+licenseType: Free
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - unitSpriteFront: {fileID: 21300000, guid: 4cde7b81c881943fd836e2d253d65a00, type: 3}
+  - unitSpriteBack: {fileID: 21300000, guid: b56eb1c88d71d4763baeeb897fd4bd33, type: 3}
+  - unitSpriteLeft: {fileID: 21300000, guid: 505e86eb077104bab94635a71cb788e9, type: 3}
+  - unitSpriteRight: {fileID: 21300000, guid: 2c4fe8861a45c4975b918cd7a80f35fa, type: 3}
+  - map: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
