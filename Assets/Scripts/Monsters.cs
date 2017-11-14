@@ -28,8 +28,14 @@ public class Monsters : MonoBehaviour {
 	int[,] tiles;
 
 	void Start() {
-		
+		transform.localScale = new Vector3 (0, 0, 0);
 
+	}
+
+	void Update() {
+		if (transform.localScale.x <= 0.3f) {
+			transform.localScale += new Vector3 (0.03F, 0.03F, 0);
+		}
 	}
 
 	public void UpdateSprite()

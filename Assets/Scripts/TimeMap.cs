@@ -280,6 +280,7 @@ public class TimeMap : MonoBehaviour {
 					//newSpawn.gameObject.tag = "Monster1";
 					newSpawn.GetComponent<Monsters>().tileX = selectedUnit.GetComponent<Unit>().tileX;
 					newSpawn.GetComponent<Monsters>().tileY = selectedUnit.GetComponent<Unit>().tileY;
+					newSpawn.GetComponent<AudioSource> ().Play ();
 
 					// fuse to a higher level monster
 					if(newSpawn.GetComponent<Monsters>().level < 8) {
