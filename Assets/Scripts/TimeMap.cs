@@ -10,6 +10,7 @@ public class TimeMap : MonoBehaviour {
 	public GameObject selectedMonster;
 	public GameObject selectedMon1;
 	public GameObject newSpawn;
+	public GameObject greatEffect;
 
 	public bool[,] occupationArray = new bool[8, 8];
 	int[,] tiles;
@@ -301,6 +302,9 @@ public class TimeMap : MonoBehaviour {
 
                     connect(newSpawn);
                     fuse (newSpawn);
+					if (toremove.Count >= 4) {
+						StartCoroutine ("TriggerJuicyText");
+					}
 				} else {
 					foreach (GameObject g in toremove) {
 						Monsters gmonster = g.GetComponent<Monsters> ();
@@ -309,6 +313,15 @@ public class TimeMap : MonoBehaviour {
 				}
 			}
 		}
+	}
+
+	IEnumerator TriggerJuicyText()
+	{
+		
+			greatEffect.SetActive (true);
+			yield return new WaitForSeconds (1.5f);
+			greatEffect.SetActive (false);
+	
 	}
 
 
