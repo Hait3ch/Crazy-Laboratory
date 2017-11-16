@@ -122,13 +122,13 @@ public class TimeMap : MonoBehaviour {
 		for(int x=0; x < mapSizeX; x++) {
 			for(int	 y=0; y < mapSizeY; y++) {
 				TileType tt = tileTypes[ tiles[x,y] ];
-				GameObject go = (GameObject)Instantiate(tt.tileVisualPrefab, new Vector3(x, y, 0), Quaternion.identity);
+				GameObject tile = (GameObject)Instantiate(tt.tileVisualPrefab, new Vector3(x, y, 0), Quaternion.identity);
 				if (tt.name == "Floor") {
 					if ((x + y) % 2 == 1) {
-						go.GetComponent<Renderer> ().material.color = new Color (130/255.0f, 128/255.0f, 156/255.0f, 1);
+						//tile.GetComponent<Renderer> ().material.color = new Color (150/255.0f, 150/255.0f, 200/255.0f, 1);
 					}
 				}
-				ClickableTile ct = go.GetComponent<ClickableTile>();
+				ClickableTile ct = tile.GetComponent<ClickableTile>();
 				ct.tileX = x;
 				ct.tileY = y;
 				ct.map = this;
