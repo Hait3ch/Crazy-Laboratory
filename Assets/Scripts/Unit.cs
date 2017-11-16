@@ -77,7 +77,7 @@ public class Unit : MonoBehaviour {
                 child.GetComponent<SpriteRenderer> ().sprite = unitSpriteBack;
                 map.MoveSelectedUnitTo(Convert.ToInt32(transform.position.x), Convert.ToInt32(Mathf.Min(5,transform.position.y + 1)));
 				source.PlayOneShot (moveSound, 1);
-				StartCoroutine ("ShowMidCloud");
+				StartCoroutine ("ShowBackCloud");
             }
             if (Input.GetKeyDown(KeyCode.DownArrow)) {
                 child.GetComponent<SpriteRenderer> ().sprite = unitSpriteFront;
