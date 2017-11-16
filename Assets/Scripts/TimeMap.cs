@@ -27,6 +27,8 @@ public class TimeMap : MonoBehaviour {
 	public ClickableTile clickableTile;
 	public Helper helper;
 
+	public bool hasStarted = false;
+
 	public List<GameObject> monsterList = new List<GameObject>();
 
     // Game settings
@@ -49,6 +51,8 @@ public class TimeMap : MonoBehaviour {
 	static float multiplier = 2/3f;
 	
 	int timesCombined = 0;
+	int initialX = 0;
+	int initialY = 5;
 
 	void Start ()
 	{
@@ -61,8 +65,11 @@ public class TimeMap : MonoBehaviour {
 		selectedUnit.GetComponent<Unit>().carrying = false;
 		selectedUnit.GetComponent<Unit>().tileX = 4;
 		selectedUnit.GetComponent<Unit>().tileY = 4;
-		selectedMonster.GetComponent<Monsters>().tileX = Random.Range(0,6);
-		selectedMonster.GetComponent<Monsters>().tileY = Random.Range(0,6);
+		initialX = Random.Range (0, 6);
+		//initialY = Random.Range (0, 6);
+		StartCoroutine ("unitWalkIn");
+		//selectedMonster.GetComponent<Monsters>().tileX = ;
+		//selectedMonster.GetComponent<Monsters>().tileY = Random.Range(0,6);
 
 		for (int i = 0; i < mapSizeX; i++) {
 			for (int j = 0; j < mapSizeY; j++) {
@@ -71,13 +78,27 @@ public class TimeMap : MonoBehaviour {
 		}
 		selectedMonster.transform.position = TileCoordToWorldCoord(selectedMonster.GetComponent<Monsters>().tileX, selectedMonster.GetComponent<Monsters>().tileY);
 
-		SpawnMon();
-		SpawnMon();
-		counterIncrease();
-
 		GenerateMapData();
 		GenerateMapVisual();
 	}
+
+	IEnumerator unitWalkIn() {
+		selectedUnit.GetComponent<Unit>().tileX = initialX;
+		selectedUnit.GetComponent<Unit>().tileY = initialY;
+		selectedUnit.transform.position = TileCoordToWorldCoord(initialX, initialY+2);
+		yield return new WaitForSeconds (0.5f);
+		selectedUnit.transform.position = TileCoordToWorldCoord(initialX, initialY+1);
+		selectedUnit.GetComponent<Unit>().PlaySound();
+		yield return new WaitForSeconds (0.5f);
+		selectedUnit.transform.position = TileCoordToWorldCoord(initialX, initialY);
+		selectedUnit.GetComponent<Unit>().PlaySound();
+		yield return new WaitForSeconds (0.5f);
+		SpawnMon();
+		SpawnMon();
+		counterIncrease();
+		hasStarted = true;
+	}
+
 	void GenerateMapData() {
 		// Allocate our map tiles
 		tiles = new int[mapSizeX, mapSizeY];

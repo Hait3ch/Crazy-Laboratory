@@ -25,9 +25,13 @@ public class Unit : MonoBehaviour {
 		source = GetComponent<AudioSource> ();
 	}
 
+	public void PlaySound() {
+		source.PlayOneShot (moveSound, 1);
+	}
+
 	void Update() {
 		var child = this.gameObject.transform.GetChild (0);
-		if(!map.gameOver) {
+		if(map.hasStarted && !map.gameOver) {
             if (Input.GetKeyDown(KeyCode.LeftArrow)) {
                 child.GetComponent<SpriteRenderer> ().sprite = unitSpriteLeft;
                 map.MoveSelectedUnitTo(Convert.ToInt32(Math.Max(0, transform.position.x - 1)), Convert.ToInt32(transform.position.y));
