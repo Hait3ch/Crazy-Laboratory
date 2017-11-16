@@ -2984,6 +2984,10 @@ MonoBehaviour:
   unitSpriteBack: {fileID: 21300000, guid: b56eb1c88d71d4763baeeb897fd4bd33, type: 3}
   unitSpriteLeft: {fileID: 21300000, guid: 505e86eb077104bab94635a71cb788e9, type: 3}
   unitSpriteRight: {fileID: 21300000, guid: 2c4fe8861a45c4975b918cd7a80f35fa, type: 3}
+  unitStopFront: {fileID: 21300000, guid: bc4ff2592b9554b3f8a5e1a2f2a7193a, type: 3}
+  unitStopBack: {fileID: 21300000, guid: 45b1ae4af34df41fc844aad1da912b15, type: 3}
+  unitStopLeft: {fileID: 21300000, guid: 034f8777704704e0182f19b54df28eba, type: 3}
+  unitStopRight: {fileID: 21300000, guid: 1a8bbe79fef02471f8810a3f923900ea, type: 3}
   leftCloud: {fileID: 1440007464}
   rightCloud: {fileID: 2117659725}
   midCloud: {fileID: 772938784}
