@@ -151,6 +151,7 @@ public class TimeMap : MonoBehaviour {
 		occupationArray [mon.GetComponent<Monsters>().tileX, mon.GetComponent<Monsters>().tileY] = false;
 		selectedUnit.GetComponent<Unit> ().carryingLevel = mon.GetComponent<Monsters> ().level;
 		selectedUnit.GetComponent<Unit>().carrying = true;
+		selectedUnit.GetComponent<Unit> ().UpdateCarryingSprite ();
 
 		monsterList.Remove(mon);
 		mon.GetComponent<Monsters>().destroy (true);

@@ -2988,6 +2988,10 @@ MonoBehaviour:
   unitStopBack: {fileID: 21300000, guid: 45b1ae4af34df41fc844aad1da912b15, type: 3}
   unitStopLeft: {fileID: 21300000, guid: 034f8777704704e0182f19b54df28eba, type: 3}
   unitStopRight: {fileID: 21300000, guid: 1a8bbe79fef02471f8810a3f923900ea, type: 3}
+  unitMonFront: {fileID: 21300000, guid: 78ddcb4f2b3464df0a8afb60d6c8e4ae, type: 3}
+  unitMonBack: {fileID: 21300000, guid: faa21cf6d6d5848a5946377d657d7c16, type: 3}
+  unitMonLeft: {fileID: 21300000, guid: e6f65dda02af941a29d27ab7baf46935, type: 3}
+  unitMonRight: {fileID: 21300000, guid: b84a4728928114705ae238b5319c0ce1, type: 3}
   leftCloud: {fileID: 1440007464}
   rightCloud: {fileID: 2117659725}
   midCloud: {fileID: 772938784}

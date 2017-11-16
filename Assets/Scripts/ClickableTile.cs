@@ -35,6 +35,7 @@ public class ClickableTile : MonoBehaviour {
             if (map.selectedUnit.GetComponent<Unit>().carrying && timeLeftToPressAgain > 0) {
 
                 map.selectedUnit.GetComponent<Unit>().carrying = false;
+				map.selectedUnit.GetComponent<Unit> ().UpdateIdleSprite ();
 
                 GameObject newSpawn	= (GameObject)Instantiate(map.selectedMonster.GetComponent<Monsters>().Monster, new Vector3(map.selectedUnit.GetComponent<Unit>().tileX, map.selectedUnit.GetComponent<Unit>().tileY, -1), Quaternion.identity);
                 newSpawn.GetComponent<Monsters>().tileX = map.selectedUnit.GetComponent<Unit>().tileX;

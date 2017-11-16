@@ -10,6 +10,7 @@ public class Unit : MonoBehaviour {
 
 	public bool carrying;
 	public int carryingLevel;
+	public int currentStatus = 2;
 
 	public AudioClip moveSound;
 	public AudioSource source;
@@ -23,6 +24,11 @@ public class Unit : MonoBehaviour {
 	public Sprite unitStopBack;
 	public Sprite unitStopLeft;
 	public Sprite unitStopRight;
+
+	public Sprite unitMonFront;
+	public Sprite unitMonBack;
+	public Sprite unitMonLeft;
+	public Sprite unitMonRight;
 
 	public GameObject leftCloud;
 	public GameObject rightCloud;
@@ -63,32 +69,81 @@ public class Unit : MonoBehaviour {
 		backCloud.SetActive(false);
 	}
 
+	public void UpdateCarryingSprite() {
+		var child = this.gameObject.transform.GetChild (0);
+		switch (currentStatus)
+		{
+		case 0:
+			child.GetComponent<SpriteRenderer> ().sprite = unitMonLeft;
+			break;
+		case 1:
+			child.GetComponent<SpriteRenderer> ().sprite = unitMonRight;
+			break;
+		case 2:
+			child.GetComponent<SpriteRenderer> ().sprite = unitMonBack;
+			break;
+		case 3:
+			child.GetComponent<SpriteRenderer> ().sprite = unitMonFront;
+			break;
+		}
+	}
+
+	public void UpdateIdleSprite() {
+		var child = this.gameObject.transform.GetChild (0);
+		switch (currentStatus)
+		{
+		case 0:
+			child.GetComponent<SpriteRenderer> ().sprite = unitSpriteLeft;
+			break;
+		case 1:
+			child.GetComponent<SpriteRenderer> ().sprite = unitSpriteRight;
+			break;
+		case 2:
+			child.GetComponent<SpriteRenderer> ().sprite = unitSpriteBack;
+			break;
+		case 3:
+			child.GetComponent<SpriteRenderer> ().sprite = unitSpriteFront;
+			break;
+		}
+	}
+
 	void Update() {
 		var child = this.gameObject.transform.GetChild (0);
 		bool isMoved = false;
 		if(map.hasStarted && !map.gameOver) {
             if (Input.GetKeyDown(KeyCode.LeftArrow)) {
-                child.GetComponent<SpriteRenderer> ().sprite = unitSpriteLeft;
+				currentStatus = 0;
+				child.GetComponent<SpriteRenderer> ().sprite = unitSpriteLeft;
 				isMoved = (transform.position.x - 1 >= 0) && map.MoveSelectedUnitTo(Convert.ToInt32(Math.Max(0, transform.position.x - 1)), Convert.ToInt32(transform.position.y));
+
 				if (isMoved) {
 					source.PlayOneShot (moveSound, 1);
 					StartCoroutine ("ShowLeftCloud");
 				} else {
 					child.GetComponent<SpriteRenderer> ().sprite = unitStopLeft;
 				}
+				if (carrying) {
+					child.GetComponent<SpriteRenderer> ().sprite = unitMonLeft;
+				}
             }
             if (Input.GetKeyDown(KeyCode.RightArrow)) {
-                child.GetComponent<SpriteRenderer> ().sprite = unitSpriteRight;
+				currentStatus = 1;
+				child.GetComponent<SpriteRenderer> ().sprite = unitSpriteRight;
 				isMoved = (transform.position.x + 1 <= 5) && map.MoveSelectedUnitTo(Convert.ToInt32(Mathf.Min(5, transform.position.x + 1)), Convert.ToInt32(transform.position.y));
+
 				if (isMoved) {
 					source.PlayOneShot (moveSound, 1);
 					StartCoroutine ("ShowRightCloud");
 				} else {
 					child.GetComponent<SpriteRenderer> ().sprite = unitStopRight;
 				}
+				if (carrying) {
+					child.GetComponent<SpriteRenderer> ().sprite = unitMonRight;
+				}
             }
             if (Input.GetKeyDown(KeyCode.UpArrow)) {
-                child.GetComponent<SpriteRenderer> ().sprite = unitSpriteBack;
+				currentStatus = 2;
+				child.GetComponent<SpriteRenderer> ().sprite = unitSpriteBack;
 				isMoved = (transform.position.y + 1 <= 5) && map.MoveSelectedUnitTo(Convert.ToInt32(transform.position.x), Convert.ToInt32(Mathf.Min(5,transform.position.y + 1)));
 				if (isMoved) {
 					source.PlayOneShot (moveSound, 1);
@@ -96,15 +151,22 @@ public class Unit : MonoBehaviour {
 				} else {
 					child.GetComponent<SpriteRenderer> ().sprite = unitStopBack;
 				}
+				if (carrying) {
+					child.GetComponent<SpriteRenderer> ().sprite = unitMonBack;
+				}
             }
             if (Input.GetKeyDown(KeyCode.DownArrow)) {
-                child.GetComponent<SpriteRenderer> ().sprite = unitSpriteFront;
+				currentStatus = 3;
+				child.GetComponent<SpriteRenderer> ().sprite = unitSpriteFront;
 				isMoved = (transform.position.y - 1 >= 0) && map.MoveSelectedUnitTo(Convert.ToInt32(transform.position.x), Convert.ToInt32(Mathf.Max(0, transform.position.y - 1)));
 				if (isMoved) {
 					source.PlayOneShot (moveSound, 1);
 					StartCoroutine ("ShowMidCloud");
 				} else {
 					child.GetComponent<SpriteRenderer> ().sprite = unitStopFront;
+				}
+				if (carrying) {
+					child.GetComponent<SpriteRenderer> ().sprite = unitMonFront;
 				}
             }
         }
