@@ -12,6 +12,8 @@ public class TimeMap : MonoBehaviour {
 	public GameObject newSpawn;
 	public GameObject greatEffect;
 	public GameObject amazingEffect;
+	public GameObject ready;
+	public GameObject go;
 
 	public bool[,] occupationArray = new bool[8, 8];
 	int[,] tiles;
@@ -92,9 +94,13 @@ public class TimeMap : MonoBehaviour {
 		yield return new WaitForSeconds (0.5f);
 		selectedUnit.transform.position = TileCoordToWorldCoord(initialX, initialY);
 		selectedUnit.GetComponent<Unit>().PlaySound();
+		ready.SetActive (true);
+		yield return new WaitForSeconds (1f);
+		SpawnMon();
 		yield return new WaitForSeconds (0.5f);
 		SpawnMon();
-		SpawnMon();
+		yield return new WaitForSeconds (0.1f);
+		go.SetActive (true);
 		counterIncrease();
 		hasStarted = true;
 	}
