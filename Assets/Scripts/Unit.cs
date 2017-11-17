@@ -14,6 +14,7 @@ public class Unit : MonoBehaviour {
 
 	public AudioClip moveSound;
 	public AudioClip stopSound;
+	public AudioClip loseSound;
 	public AudioSource source;
 
 	public Sprite unitSpriteFront;
@@ -30,6 +31,9 @@ public class Unit : MonoBehaviour {
 	public Sprite unitMonBack;
 	public Sprite unitMonLeft;
 	public Sprite unitMonRight;
+
+	public Sprite unitCry1;
+	public Sprite unitCry2;
 
 	public GameObject leftCloud;
 	public GameObject rightCloud;
@@ -89,6 +93,15 @@ public class Unit : MonoBehaviour {
 		}
 	}
 
+	public void UpdateCry(int index) {
+		var child = this.gameObject.transform.GetChild (0);
+		if (index == 0) {
+			child.GetComponent<SpriteRenderer> ().sprite = unitCry1;
+		} else if (index == 1) {
+			child.GetComponent<SpriteRenderer> ().sprite = unitCry2;
+		}
+	}
+
 	public void UpdateIdleSprite() {
 		var child = this.gameObject.transform.GetChild (0);
 		switch (currentStatus)
@@ -106,6 +119,10 @@ public class Unit : MonoBehaviour {
 			child.GetComponent<SpriteRenderer> ().sprite = unitSpriteFront;
 			break;
 		}
+	}
+
+	public void LoseCry() {
+		source.PlayOneShot (loseSound, 1);
 	}
 
 	void Update() {

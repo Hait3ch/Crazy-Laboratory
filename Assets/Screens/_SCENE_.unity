@@ -385,6 +385,7 @@ MonoBehaviour:
   ready: {fileID: 939804547}
   go: {fileID: 1226930461}
   gameOverLayer: {fileID: 1274806436}
+  music: {fileID: 1770434316}
   occupiedCount: 0
   gameOver: 0
   unit: {fileID: 1815779231}
@@ -2131,6 +2132,7 @@ GameObject:
   - component: {fileID: 1274806439}
   - component: {fileID: 1274806438}
   - component: {fileID: 1274806437}
+  - component: {fileID: 1274806441}
   m_Layer: 5
   m_Name: GameOverCanvas
   m_TagString: Untagged
@@ -2217,6 +2219,86 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!82 &1274806441
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1274806436}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: b881f5d503d534aadb6316d6f7362ced, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
 --- !u!1 &1311144633 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1393886690953844, guid: 56e624967472d455384304d4f275b194,
@@ -3673,6 +3755,12 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1717175252}
+--- !u!114 &1770434316 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 11484940, guid: 568207d0781d8d24890588312b92a08d,
+    type: 2}
+  m_PrefabInternal: {fileID: 1267240583}
+  m_Script: {fileID: 11500000, guid: 3508c7ecf05f3ef4baaac5b093fb3c93, type: 3}
 --- !u!1 &1815779229
 GameObject:
   m_ObjectHideFlags: 0
@@ -3723,6 +3811,7 @@ MonoBehaviour:
   currentStatus: 2
   moveSound: {fileID: 8300000, guid: 29bde6326b4c34ad8a12da475f79b50a, type: 3}
   stopSound: {fileID: 8300000, guid: 5fdb13d3756c84fecac96f5a2d124370, type: 3}
+  loseSound: {fileID: 8300000, guid: 45201c1d675834232b5afe1d066e984e, type: 3}
   source: {fileID: 0}
   unitSpriteFront: {fileID: 21300000, guid: 4cde7b81c881943fd836e2d253d65a00, type: 3}
   unitSpriteBack: {fileID: 21300000, guid: b56eb1c88d71d4763baeeb897fd4bd33, type: 3}
@@ -3736,6 +3825,8 @@ MonoBehaviour:
   unitMonBack: {fileID: 21300000, guid: faa21cf6d6d5848a5946377d657d7c16, type: 3}
   unitMonLeft: {fileID: 21300000, guid: e6f65dda02af941a29d27ab7baf46935, type: 3}
   unitMonRight: {fileID: 21300000, guid: b84a4728928114705ae238b5319c0ce1, type: 3}
+  unitCry1: {fileID: 21300000, guid: 5e3c5f8aea0da4d978cf7d98f7243bd4, type: 3}
+  unitCry2: {fileID: 21300000, guid: 7e2a38e8f0d134f36b0702af38ef3e1b, type: 3}
   leftCloud: {fileID: 1440007464}
   rightCloud: {fileID: 2117659725}
   midCloud: {fileID: 772938784}

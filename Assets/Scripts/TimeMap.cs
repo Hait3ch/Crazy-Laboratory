@@ -15,6 +15,7 @@ public class TimeMap : MonoBehaviour {
 	public GameObject ready;
 	public GameObject go;
 	public GameObject gameOverLayer;
+	public SumMusic music;
 
 	public bool[,] occupationArray = new bool[8, 8];
 	int[,] tiles;
@@ -83,6 +84,10 @@ public class TimeMap : MonoBehaviour {
 
 		GenerateMapData();
 		GenerateMapVisual();
+
+		if (!music.MusicOn) {
+			music.ToggleMusic ();
+		}
 	}
 
 	IEnumerator unitWalkIn() {
@@ -408,12 +413,23 @@ public class TimeMap : MonoBehaviour {
 	void Update() {
 
 	    // game ends when player drops(not carrying) the 36th monster on floor and monsterList.Count more than 36
-	    if (monsterList.Count >= 36 && !selectedUnit.GetComponent<Unit>().carrying) {
+	    if (!gameOver && monsterList.Count >= 3 && !selectedUnit.GetComponent<Unit>().carrying) {
 	        gameOver = true;
-            timeLeft -= Time.deltaTime;
-            print("Time Left: " + Mathf.Round(timeLeft));
-			if (timeLeft < 0)
-				gameOverLayer.SetActive (true);
+			StartCoroutine ("GameOver");
 	    }
+	}
+
+	IEnumerator GameOver() {
+		if (music.MusicOn) {
+			music.ToggleMusic ();
+		}
+		selectedUnit.GetComponent<Unit> ().LoseCry ();
+		for (int i = 0; i < 4; i++) {
+			yield return new WaitForSeconds (0.5f);
+			selectedUnit.GetComponent<Unit> ().UpdateCry (0);
+			yield return new WaitForSeconds (0.5f);
+			selectedUnit.GetComponent<Unit> ().UpdateCry (1);
+		}
+			gameOverLayer.SetActive (true);
 	}
 }
