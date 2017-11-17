@@ -12,13 +12,13 @@ EditorBuildSettings:
     path: Assets/Screens/_SCENE_.unity
     guid: 9a1635e47c27f0140b0d7969753fae36
   - enabled: 0
-    path: Assets/Screens/End Scene.unity
+    path: 
     guid: e7b88f00fc95c4258bef2103a3fede6e
   - enabled: 0
-    path: Assets/Screens/Help.unity
+    path: 
     guid: 0172b79530ea72349a7f70befa287a88
   - enabled: 0
-    path: Assets/Screens/Help2.unity
+    path: 
     guid: e6a5137b1de74b94baa15d0eef83070f
   - enabled: 1
     path: Assets/Screens/Credits.unity
