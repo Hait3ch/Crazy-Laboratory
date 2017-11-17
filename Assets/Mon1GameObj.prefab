@@ -37,7 +37,7 @@ Transform:
   m_GameObject: {fileID: 1138782200576874}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 6.5538874, y: 6.2893305, z: -0.7}
-  m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -135,12 +135,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite1: {fileID: 21300000, guid: c52af837add15441fb973402a7d8502a, type: 3}
   sprite2: {fileID: 21300000, guid: c3c3c4aaa33c74ecca82bec019e8225e, type: 3}
-  sprite3: {fileID: 21300000, guid: 96ad4d8d51a9b43d5bf26b562727b150, type: 3}
-  sprite4: {fileID: 21300000, guid: 76344102879ed4ca7b058c90108af590, type: 3}
-  sprite5: {fileID: 21300000, guid: 314228fd0d3b44886bd8877cb091f7fe, type: 3}
-  sprite6: {fileID: 21300000, guid: 623f0d18732ed4b529ef44829724cac9, type: 3}
-  sprite7: {fileID: 21300000, guid: 6bd6d59e325ed4e04bdbad9f51a4dcba, type: 3}
-  sprite8: {fileID: 21300000, guid: 2ff8ef3c84833435392f3c2f6e46ff97, type: 3}
+  sprite3: {fileID: 21300000, guid: 76344102879ed4ca7b058c90108af590, type: 3}
+  sprite4: {fileID: 21300000, guid: 314228fd0d3b44886bd8877cb091f7fe, type: 3}
+  sprite5: {fileID: 21300000, guid: 623f0d18732ed4b529ef44829724cac9, type: 3}
+  sprite6: {fileID: 21300000, guid: 6bd6d59e325ed4e04bdbad9f51a4dcba, type: 3}
+  sprite7: {fileID: 21300000, guid: 2ff8ef3c84833435392f3c2f6e46ff97, type: 3}
+  sprite8: {fileID: 21300000, guid: 90ab3e58caba14c66ad3bb1c3699975c, type: 3}
   clearEffect: {fileID: 1547679353811178, guid: 4fa8fe3a263264b3b9ea9a8f95d14e4e,
     type: 2}
   tileX: 0

@@ -33,7 +33,7 @@ public class Monsters : MonoBehaviour {
 	}
 
 	void Update() {
-		if (transform.localScale.x <= 0.3f) {
+		if (transform.localScale.x <= 0.4f) {
 			transform.localScale += new Vector3 (0.03F, 0.03F, 0);
 		}
 	}
