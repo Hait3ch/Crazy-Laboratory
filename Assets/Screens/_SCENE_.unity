@@ -1649,7 +1649,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22495484, guid: 568207d0781d8d24890588312b92a08d, type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 288
       objectReference: {fileID: 0}
     - target: {fileID: 22495484, guid: 568207d0781d8d24890588312b92a08d, type: 2}
       propertyPath: m_AnchoredPosition.y
@@ -1691,6 +1691,10 @@ Prefab:
       propertyPath: m_audioClip
       value: 
       objectReference: {fileID: 8300000, guid: 744c94f801749473590d709133afb6be, type: 3}
+    - target: {fileID: 8219966, guid: 568207d0781d8d24890588312b92a08d, type: 2}
+      propertyPath: MaxDistance
+      value: 574.88403
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 568207d0781d8d24890588312b92a08d, type: 2}
   m_IsPrefabParent: 0
