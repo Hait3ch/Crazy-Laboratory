@@ -413,7 +413,7 @@ public class TimeMap : MonoBehaviour {
 	void Update() {
 
 	    // game ends when player drops(not carrying) the 36th monster on floor and monsterList.Count more than 36
-	    if (!gameOver && monsterList.Count >= 3 && !selectedUnit.GetComponent<Unit>().carrying) {
+	    if (!gameOver && monsterList.Count >= 36 && !selectedUnit.GetComponent<Unit>().carrying) {
 	        gameOver = true;
 			StartCoroutine ("GameOver");
 	    }
