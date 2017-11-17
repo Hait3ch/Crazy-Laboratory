@@ -14,6 +14,7 @@ public class TimeMap : MonoBehaviour {
 	public GameObject amazingEffect;
 	public GameObject ready;
 	public GameObject go;
+	public GameObject gameOverLayer;
 
 	public bool[,] occupationArray = new bool[8, 8];
 	int[,] tiles;
@@ -411,8 +412,8 @@ public class TimeMap : MonoBehaviour {
 	        gameOver = true;
             timeLeft -= Time.deltaTime;
             print("Time Left: " + Mathf.Round(timeLeft));
-            if(timeLeft < 0)
-                SceneManager.LoadScene (2);
+			if (timeLeft < 0)
+				gameOverLayer.SetActive (true);
 	    }
 	}
 }
