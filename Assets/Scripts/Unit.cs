@@ -13,6 +13,7 @@ public class Unit : MonoBehaviour {
 	public int currentStatus = 2;
 
 	public AudioClip moveSound;
+	public AudioClip stopSound;
 	public AudioSource source;
 
 	public Sprite unitSpriteFront;
@@ -120,6 +121,7 @@ public class Unit : MonoBehaviour {
 					source.PlayOneShot (moveSound, 1);
 					StartCoroutine ("ShowLeftCloud");
 				} else {
+					source.PlayOneShot (stopSound, 1);
 					child.GetComponent<SpriteRenderer> ().sprite = unitStopLeft;
 				}
 				if (carrying) {
@@ -135,6 +137,7 @@ public class Unit : MonoBehaviour {
 					source.PlayOneShot (moveSound, 1);
 					StartCoroutine ("ShowRightCloud");
 				} else {
+					source.PlayOneShot (stopSound, 1);
 					child.GetComponent<SpriteRenderer> ().sprite = unitStopRight;
 				}
 				if (carrying) {
@@ -149,6 +152,7 @@ public class Unit : MonoBehaviour {
 					source.PlayOneShot (moveSound, 1);
 					StartCoroutine ("ShowBackCloud");
 				} else {
+					source.PlayOneShot (stopSound, 1);
 					child.GetComponent<SpriteRenderer> ().sprite = unitStopBack;
 				}
 				if (carrying) {
@@ -163,6 +167,7 @@ public class Unit : MonoBehaviour {
 					source.PlayOneShot (moveSound, 1);
 					StartCoroutine ("ShowMidCloud");
 				} else {
+					source.PlayOneShot (stopSound, 1);
 					child.GetComponent<SpriteRenderer> ().sprite = unitStopFront;
 				}
 				if (carrying) {
