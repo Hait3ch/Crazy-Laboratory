@@ -6,3 +6,7 @@ Ensure that the laboratory is not taken over by monsters as long as possible. Th
 
 # Tutorial
 More details can be viewed in tutorial section by clicking ’help’ button in menu.
+
+# Programming language
+- Unity
+- C#
